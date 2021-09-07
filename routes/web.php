@@ -14,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('categoria');
+    return view('welcome');
+});
+
+Route::group(['middleware' => ['auth']], function () { 
+    Route::get('categoria', function () {
+        return view('categoria');
+    });
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

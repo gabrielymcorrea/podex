@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{
+    CategoriaController,
+    PerfilController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +22,9 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['auth']], function () { 
-    Route::get('categoria', function () {
-        return view('categoria');
-    });
+    Route::get('/categoria', [CategoriaController::class, 'index'])->name('index_categoria');
+    Route::get('/categoria/{id}', [CategoriaController::class, 'categoria'])->name('categoria');
+    Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

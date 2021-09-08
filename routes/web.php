@@ -24,7 +24,12 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth']], function () { 
     Route::get('/categoria', [CategoriaController::class, 'index'])->name('index_categoria');
     Route::get('/categoria/{id}', [CategoriaController::class, 'categoria'])->name('categoria');
+    Route::get('/show/{id}', [CategoriaController::class, 'show'])->name('show');
+
+    
     Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil');
+    Route::post('/canal', [PerfilController::class, 'canal'])->name('canal');
+    Route::post('/episodio', [PerfilController::class, 'episodio'])->name('episodio');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

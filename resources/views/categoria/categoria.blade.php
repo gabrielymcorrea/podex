@@ -98,7 +98,7 @@
     </div>
     <div class="row" style="margin-top:10px;">
         @foreach ($podcast as $pod)
-            <div class="col-md-3" style="margin-bottom:20px;">
+            <div class="col-md-3 col-xs-6 col-sm-6" id="pesquisar" style="margin-bottom:20px;">
                 <a href="{{route('show', $pod->id)}}">
                     <div class="card-categoria">
                         <div class="row"> 
@@ -118,6 +118,20 @@
 <script> 
     $(".titulo-categoria").text(function(){
         return $(this).text().length > 15 ? $(this).text().substr(0, 15)+'...' : $(this).text();
+    });
+
+    var $rows = $('#pesquisar a');
+    $('#pesquisa').keyup(function() {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase().split(' ');
+
+        $rows.hide().filter(function() {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            var matchesSearch = true;
+            $(val).each(function(index, value) {
+                matchesSearch = (!matchesSearch) ? false : ~text.indexOf(value);
+            });
+            return matchesSearch;
+        }).show();
     });
 </script>
 

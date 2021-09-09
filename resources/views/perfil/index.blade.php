@@ -88,7 +88,7 @@
         <form method="post" action="{{route('episodio')}}" enctype="multipart/form-data">
             @csrf
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control form-perfil" id="nome_podcast" name="nome_ep" placeholder="Leave a comment here">
                         <label for="nome_podcast" class="label-perfil">Nome ep</label>
@@ -99,7 +99,6 @@
 
             <input type="file" class="form-control mb-3" accept="audio/*" name="audio_ep">
 
-            <input type="file" class="form-control mb-3" accept="image/*" name="image_capa">
 
             <button type="submit" class="btn btn-primary"> enviar </button>
         </form>

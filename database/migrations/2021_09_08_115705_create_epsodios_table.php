@@ -16,7 +16,7 @@ class CreateEpsodiosTable extends Migration
         Schema::create('epsodios', function (Blueprint $table) {
             $table->id();
             $table->string('name_ep')->nullable();
-            $table->string('name_foto')->nullable();
+            $table->string('temp_audio')->nullable();
             $table->string('name_audio')->nullable();
             $table->integer('id_user')->nullable();
             $table->timestamps();

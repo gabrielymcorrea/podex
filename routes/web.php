@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     CategoriaController,
-    PerfilController
+    PerfilController,
+    CurtidaController, 
+    PlaylistController
 };
 
 /*
@@ -18,7 +20,7 @@ use App\Http\Controllers\{
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::group(['middleware' => ['auth']], function () { 
@@ -30,6 +32,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil');
     Route::post('/canal', [PerfilController::class, 'canal'])->name('canal');
     Route::post('/episodio', [PerfilController::class, 'episodio'])->name('episodio');
+
+
+    Route::get('/curtida', [CurtidaController::class, 'index'])->name('curtida');
+
+
+    Route::get('/playlist', [PlaylistController::class, 'index'])->name('playlist');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

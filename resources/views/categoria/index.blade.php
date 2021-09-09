@@ -29,7 +29,7 @@
     </div>
     <div class="row" style="margin-top:10px;">
         @foreach ($categorias as $cat)
-            <div class="col-md-3 " style="margin-bottom:20px;">
+            <div class="col-md-3 col-xs-6 col-sm-6 " style="margin-bottom:20px;">
                 <a href="{{route('categoria', $cat->id)}}">
                     <div class="card-categoria">
                         <p class="tituloo-categoria">{{$cat->type}}</p>

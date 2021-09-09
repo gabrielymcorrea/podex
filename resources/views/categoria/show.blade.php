@@ -10,6 +10,10 @@
     color:#4723D9;
     text-decoration:underline !important;
 }
+
+.id-ep:hover{
+    cursor: pointer;
+}
 </style>
 <div class="height-100">
     <div class="row"> 
@@ -23,4 +27,31 @@
         </div>
     </div>
 
+    <div class="row">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Título</th>
+                <th scope="col"><i class='bx bx-time'></i></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" class="id-ep"><i onlouseovere="normal();">1</i></th>
+                <td>Mark</td>
+                <td >Otto</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
 </div>
+
+<script>
+
+function normal() {
+    console.log('ola')
+}
+
+</script>

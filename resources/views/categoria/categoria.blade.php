@@ -49,22 +49,37 @@
         color: #fff;
         background-color: #222222;
         border:none;
-        height: 42px;
+        height: 44px;
         border-radius: 0px 10px 10px 0px;
         margin:0px;
+        width: 80%;
     }
 
     .icon-pesquisar{
         color: #fff;
         background-color: #222222;
-        padding: 10px;
+        padding: 8px 10px 10px 10px;
         border-radius: 10px 0px 0px 10px;
         margin:0px;
         text-align: center;
     }
 
     .bx-search-alt{
-        font-size: 1.3rem;
+        display: inline-block;
+        font-size: 1.3rem;   
+        text-align: center; 
+    }
+
+    #pesquisa:focus, #pesquisa:active{
+        box-shadow: 0 0 0 0;
+        border: 0 none;
+        outline: 0;
+    }
+
+    @media(max-width:700px){
+        .div-pesquisar{
+            margin-top: 10px;
+        }
     }
 
 </style>
@@ -77,8 +92,8 @@
                 <span class="tiulo col-6">{{$categoria[0]->type}}</span>
             </div>
         </div> 
-        <div class="col-md-7">
-            <span class="icon-pesquisar"><i class='bx bx-search-alt'></i></span><input type="text" id="pesquisa">
+        <div class="col-md-7 div-pesquisar">
+            <label class="icon-pesquisar" for="pesquisa"><i class='bx bx-search-alt'></i></label><input type="text" placeholder="pesquise pelo nome do canal..." id="pesquisa">
         </div>
     </div>
     <div class="row" style="margin-top:10px;">

@@ -27,7 +27,7 @@
     <div style="padding-top:30px;" class="row"> 
         <div class="col-md-3"><p class="tiulo"> Categoria </p></div>
     </div>
-    <div class="row">
+    <div class="row" style="margin-top:10px;">
         @foreach ($categorias as $cat)
             <div class="col-md-3 " style="margin-bottom:20px;">
                 <a href="{{route('categoria', $cat->id)}}">

@@ -1,5 +1,5 @@
+@section('title', $data[0]->name_podcast)
 @include('sidebar')
-
 
 <style>
 .podcast_por{

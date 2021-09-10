@@ -14,11 +14,8 @@ class CategoriaSeeder extends Seeder
      */
     public function run()
     {
-        $category = ['Humor', 'Jogos', 'Educação','História','Crimes reais',
-        'Documentário','Notícias e Política',
-        'Esporte e lazer','Cultura','Estilo de vida e Saúde','Negócios','Tecnologia',
-        'Arte e Entretenimento', 'Música'
-        ];
+        $category = ['Humor', 'Jogos', 'Educação','História','Crimes reais e Documentário','Notícias e Política',
+        'Esporte e lazer','Estilo de vida e Saúde','Negócios','Tecnologia','Arte e Entretenimento', 'Música'];
 
         foreach($category as $cat){
             DB::table('categorias')->insert([

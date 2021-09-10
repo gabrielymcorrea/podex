@@ -1,3 +1,4 @@
+@section('title', 'Playlist')
 @include('sidebar')
 
 

@@ -21,7 +21,7 @@ use App\Http\Controllers\{
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::group(['middleware' => ['auth']], function () { 
     //Route::get('/categoria', [CategoriaController::class, 'index'])->name('index_categoria');
@@ -42,5 +42,6 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $categorias = Categoria::get();
+
     return view('categoria.index', compact('categorias'));
 })->name('dashboard');

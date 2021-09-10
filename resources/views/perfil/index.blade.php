@@ -1,3 +1,4 @@
+@section('title', 'Perfil')
 @include('sidebar')
 
 

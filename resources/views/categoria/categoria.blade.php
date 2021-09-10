@@ -1,3 +1,4 @@
+@section('title', $categoria[0]->type)
 @include('sidebar')
 
 <style>
@@ -88,7 +89,7 @@
     <div style="padding-top:30px;" class="row"> 
         <div class="col-md-5">
             <div class="row"> 
-                <a href="{{route('index_categoria')}}" class="icon_voltar col-6"><i class='bx bx-chevron-left nav_icon'></i> </a>
+                <a href="{{route('dashboard')}}" class="icon_voltar col-6"><i class='bx bx-chevron-left nav_icon'></i> </a>
                 <span class="tiulo col-6">{{$categoria[0]->type}}</span>
             </div>
         </div> 
@@ -106,7 +107,7 @@
                             <p class="name-user"> <span>@</span>{{$pod->name}}</p>
                         </div>
                         <div class="row"style="margin-top:10px;">
-                            <img src="{{ asset('storage/'.$pod->profile_photo_path) }}" alt="{{ $pod->name_podcast }}" class="img-fluid" />
+                            <img src="{{ asset('storage/'.$pod->profile_photo_path) }}" alt="{{ $pod->name_podcast }}" class="img-fluid"  />
                         </div>
                     </div>
                 </a>

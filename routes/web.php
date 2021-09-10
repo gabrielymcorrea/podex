@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\Categoria;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     CategoriaController,
@@ -24,7 +24,7 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['auth']], function () { 
-    Route::get('/categoria', [CategoriaController::class, 'index'])->name('index_categoria');
+    //Route::get('/categoria', [CategoriaController::class, 'index'])->name('index_categoria');
     Route::get('/categoria/{id}', [CategoriaController::class, 'categoria'])->name('categoria');
     Route::get('/show/{id}', [CategoriaController::class, 'show'])->name('show');
 
@@ -41,5 +41,6 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    $categorias = Categoria::get();
+    return view('categoria.index', compact('categorias'));
 })->name('dashboard');

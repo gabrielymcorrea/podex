@@ -9,7 +9,7 @@
             <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">Podex</span> </a>
                 <div class="nav_list"> 
                     <a href="/" class="nav_link active"> <i class='bx bx-home '></i> <span class="nav_name">Início </span> </a> 
-                    <a href="{{route('index_categoria')}}" class="nav_link"> <i class='bx bx-category nav_icon'></i> <span class="nav_name">Categoria</span> </a>
+                    <a href="{{route('dashboard')}}" class="nav_link"> <i class='bx bx-category nav_icon'></i> <span class="nav_name">Categoria</span> </a>
                     <a href="{{route('perfil')}}" class="nav_link"> <i class='bx bxl-audible'></i> <span class="nav_name">Canal podcast</span> </a>  
                     <a href="{{route('playlist')}}" class="nav_link"> <i class='bx bxs-playlist'></i><span class="nav_name">Minhas playlist</span> </a>  
                     <a href="{{route('curtida')}}" class="nav_link"> <i class='bx bx-like' ></i><span class="nav_name">Minhas curtidas</span> </a>  

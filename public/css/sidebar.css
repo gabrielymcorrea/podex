@@ -16,7 +16,6 @@
 ::after {
     box-sizing: border-box
 }
-
 body {
     position: relative;
     margin: var(--header-height) 0 0 0;
@@ -112,6 +111,9 @@ p{
     color: #FFFFFF;
 }
 
+.ola-sidebar:hover{
+    cursor: default;
+}
 .nav_logo,
 .nav_link {
     display: grid;

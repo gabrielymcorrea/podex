@@ -3,9 +3,10 @@ use App\Models\Categoria;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     CategoriaController,
-    PerfilController,
     CurtidaController, 
-    PlaylistController
+    PlaylistController,
+    EpisodioController,
+    ContaController
 };
 
 /*
@@ -29,13 +30,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/show/{id}', [CategoriaController::class, 'show'])->name('show');
 
     
-    Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil');
-    Route::post('/canal', [PerfilController::class, 'canal'])->name('canal');
-    Route::post('/episodio', [PerfilController::class, 'episodio'])->name('episodio');
-
-
+    Route::get('/conta', [ContaController::class, 'index'])->name('conta');
+    Route::post('/canal', [ContaController::class, 'canal'])->name('canal');
+   
     Route::get('/curtida', [CurtidaController::class, 'index'])->name('curtida');
 
+    Route::get('/add_ep' , [EpisodioController::class, 'index'])->name('add_ep');
+    Route::post('/episodio', [EpisodioController::class, 'episodio'])->name('episodio');
 
     Route::get('/playlist', [PlaylistController::class, 'index'])->name('playlist');
 });
@@ -45,3 +46,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
     return view('categoria.index', compact('categorias'));
 })->name('dashboard');
+
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');

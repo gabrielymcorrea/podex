@@ -1,49 +1,41 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
-use App\Models\Categoria;
 use App\Models\Epsodio;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
-class PerfilController extends Controller
+class EpisodioController extends Controller
 {
     public function index(){
-        $user = User::where('id', Auth::id())->get();
-        $categorias = Categoria::get();
-
-        return view('perfil.index', compact('user','categorias'));
+        return view('canal.index');
     }
-
+    
     //posta novo ep
-    public function episodio(Request $request){
-
-       
-
+    public function episodio(Request $request)
+    {
         //verifcando se todos os campos foram preenchidos
         $rule = array(
-			'nome_ep' => 'required',
-			'audio_ep' => 'required',
-		);
+            'nome_ep' => 'required',
+            'audio_ep' => 'required',
+        );
 
         $messages = [
             'nome_ep.required' => 'Campo nome obrigatório',
             'audio_ep.required' => 'Adicione um áudio',
         ];
 
-		$validator = Validator::make($request->all(),$rule,$messages);
+        $validator = Validator::make($request->all(), $rule, $messages);
 
 
-		if ($validator->fails()) {
-			return redirect()->back()->withErrors($validator->messages());
-		}
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->messages());
+        }
 
 
         //verifica se o user enviou o audio ep
-         if (file_exists($request->file('audio_ep'))) {
+        if (file_exists($request->file('audio_ep'))) {
             $extension = $request->file('audio_ep')->extension(); //pegando a extension do arquivo
 
             //pegando duration do audio
@@ -67,17 +59,5 @@ class PerfilController extends Controller
         ]);
 
         return back()->with('success', 'Episódio adicionada com sucesso');
-    }
-
-    //criar canal/atualizar dados do canal
-    public function canal(Request $request){
-        //salvando dados na tabela
-        User::where('id', Auth::id())->update([
-            'descricao' => isset($request['descricao']) ? $request['descricao'] : '',
-            'name_podcast' => isset($request['name_podcast']) ? $request['name_podcast'] : '',
-            'id_categoria' => isset($request['categoria']) ? $request['categoria'] : '',
-        ]);
-
-        return back()->with('success', 'Dados atualizados com sucesso');
     }
 }

@@ -83,6 +83,18 @@
         }
     }
 
+    @media(max-width:450px){
+        .card-categoria{
+            height: 430px;
+        }
+
+        #pesquisa{
+            width: 89%;
+        }
+        .img-fluid{
+            max-height: 100%;
+        }
+    }
 </style>
 
 <div class="height-100">

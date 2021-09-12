@@ -22,6 +22,16 @@
         color: #fff;
     }
 
+    img {
+        filter: brightness(50%);
+    }
+
+    @media(max-width: 555px){
+        .img-fluid {
+            max-width: 85%;
+        }
+    }
+
 </style>
 
 <div class="height-100">

@@ -7,7 +7,7 @@
   
     <title>Podex - @yield('title')</title>
 
-    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
+    <link rel="icon" href="{{ asset('favicon.svg') }}" sizes="any" type="image/svg+xml">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

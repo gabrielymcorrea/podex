@@ -29,7 +29,11 @@ td,  th, tr {
 <div class="height-100">
     <div class="row"> 
         <div style="height:280px; width:280px;">
+          @if ($data[0]->profile_photo_path)
             <img src="{{ asset('storage/'.$data[0]->profile_photo_path) }}" alt="{{ $data[0]->name_podcast }}" class="img-fluid" />
+          @else
+            <img src="{{ asset('semimage.png') }}" alt="podex" class="img-fluid" />
+          @endif
         </div>
         <div class="col-md-6"> 
             <h1 style="font-weight:bold;"> {{isset($data[0]->name_podcast) ? $data[0]->name_podcast : ''}}</h1>
@@ -39,25 +43,39 @@ td,  th, tr {
     </div>
 
     <div class="row">
-        <table class="table" id="ep">
-            <thead style="border-bottom: 1px solid #342C2C;">
-              <tr style="color: #56545a;">
-                <th scope="col">#</th>
-                <th scope="col" >Título</th>
-                <th scope="col"><i class='bx bx-time'></i></th>
-              </tr>
-            </thead>
-            <tbody style="color: #56545a;">
-              @foreach ($eps as $key => $ep)
+      <table class="table" id="ep">
+        <thead style="border-bottom: 1px solid #342C2C;">
+          <tr style="color: #56545a;">
+            <th scope="col">#</th>
+            <th scope="col" >Título</th>
+            <th scope="col"><i class='bx bx-time'></i></th>
+          </tr>
+        </thead>
+        <tbody style="color: #56545a;">
+          @foreach ($eps as $key => $ep)
+            <tr>
+              <th scope="row"><i class="play_audio" audio="{{$ep->name_audio}}" posicao="{{$key+1}}">{{$key+1}}</i></th>
+              <td style="color: #eee;">{{$ep->name_ep}}</td>
+              <td> <i class='bx bx-add-to-queue'></i> <i class='bx bx-heart'></i>  {{$ep->temp_audio}}</td>
+            </tr>
+          @endforeach 
+        </tbody>
+      </table>
+    </div>
+
+                  {{-- @foreach ($eps as $key => $ep)
                 <tr>
                   <th scope="row"><i class="play_audio" audio="{{$ep->name_audio}}" posicao="{{$key+1}}">{{$key+1}}</i></th>
                   <td style="color: #eee;">{{$ep->name_ep}}</td>
                   <td> <i class='bx bx-add-to-queue'></i> <i class='bx bx-heart'></i>  {{$ep->temp_audio}}</td>
                 </tr>
-              @endforeach
-            </tbody>
-          </table>
-    </div>
+              @endforeach 
+              
+               @foreach ($eps as $key => $ep)
+            <tr>
+              <td><audio controls><source src="http://127.0.0.1:8000/storage/audio_ep/{{$ep->name_audio}}" type="audio/ogg"></audio></td>
+            </tr>
+          @endforeach--}}
 
 {{-- <audio controls muted>
   <source src="http://127.0.0.1:8000/storage/audio_ep/613a140a97fb3.ogg" type="audio/ogg">
@@ -114,13 +132,13 @@ $("i.play_audio").click(function() {
   let caminho_completo = path_audio+nome_audio;
 
   var audio = new Audio(caminho_completo);
-  audio.play();
-  
-
-  //removendo o numero
-  $(this).text('');
 
   
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
 
 });
 </script>

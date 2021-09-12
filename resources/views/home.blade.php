@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Podex</title>
 
-    <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
+    <link rel="icon" href="{{ asset('favicon.svg') }}" sizes="any" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;700&display=swap" rel="stylesheet">
@@ -223,10 +223,10 @@
             <div class="col-6">
                 @if(Auth::check())
                     <a class="nav-link dropdown-toggle logado" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       Ola, {{Auth::user()->name}}
+                        Olá, {{Auth::user()->name}}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Conta</a></li>
+                        <li><a class="dropdown-item" href="/user/profile">Conta</a></li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item" href="#">Sair</a></li>

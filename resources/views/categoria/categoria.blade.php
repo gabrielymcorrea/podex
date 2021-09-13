@@ -49,11 +49,12 @@
     #pesquisa{
         color: #fff;
         background-color: #222222;
-        border:none;
-        height: 44px;
+        border: none;
         border-radius: 0px 10px 10px 0px;
-        margin:0px;
-        width: 80%;
+        margin: 0px;
+        padding-bottom: 10px;
+        padding-top: 8px;
+        width: 92%;
     }
 
     .icon-pesquisar{
@@ -63,6 +64,11 @@
         border-radius: 10px 0px 0px 10px;
         margin:0px;
         text-align: center;
+    }
+
+    .bx-search-alt:before, .icon-pesquisar {
+        vertical-align: middle;
+        line-height: 1;
     }
 
     .bx-search-alt{
@@ -86,10 +92,6 @@
     @media(max-width:450px){
         .card-categoria{
             height: 430px;
-        }
-
-        #pesquisa{
-            width: 89%;
         }
         .img-fluid{
             max-height: 100%;
@@ -119,7 +121,11 @@
                             <p class="name-user"> <span>@</span>{{$pod->name}}</p>
                         </div>
                         <div class="row"style="margin-top:10px;">
-                            <img src="{{ asset('storage/'.$pod->profile_photo_path) }}" alt="{{ $pod->name_podcast }}" class="img-fluid"  />
+                            @if ($pod->profile_photo_path)
+                                <img src="{{ asset('storage/'.$pod->profile_photo_path) }}" alt="{{ $pod->name_podcast }}" class="img-fluid"  />
+                            @else
+                                <img src="{{ asset('semimage.png') }}" alt="podex" class="img-fluid" />
+                            @endif
                         </div>
                     </div>
                 </a>
@@ -133,7 +139,7 @@
         return $(this).text().length > 15 ? $(this).text().substr(0, 15)+'...' : $(this).text();
     });
 
-    var $rows = $('#pesquisar a');
+    var $rows = $('#pesquisar');
     $('#pesquisa').keyup(function() {
         var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase().split(' ');
 

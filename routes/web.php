@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/canal', [ContaController::class, 'canal'])->name('canal');
    
     Route::get('/curtida', [CurtidaController::class, 'index'])->name('curtida');
+    Route::post('/curtida', [CurtidaController::class, 'curtida']);
 
     Route::get('/add_ep' , [EpisodioController::class, 'index'])->name('add_ep');
     Route::post('/episodio', [EpisodioController::class, 'episodio'])->name('episodio');

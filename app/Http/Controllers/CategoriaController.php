@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\User;
 use App\Models\Epsodio;
+use App\Models\Curtida;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -19,7 +21,8 @@ class CategoriaController extends Controller
     public function show($id){
         $data = User::where('id', $id)->get();
         $eps = Epsodio::where('id_user', $id)->get();
+        $curtidas = Curtida::where('id_user', Auth::id())->get();
 
-        return view('categoria.show', compact('data','eps'));
+        return view('categoria.show', compact('data','eps','curtidas'));
     }
 }

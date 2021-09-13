@@ -9,7 +9,7 @@
         <div class="col-md-6" style="margin-top: 30px"> 
             <h1 style="font-weight:bold;"> Minhas curtidas</h1>
             <p> {{Auth::user()->name }} </p>
-            <p> 10 curtida <i class='bx bxs-like'></i> </p> 
+            <p> {{count($curtidas)}} curtida <i class='bx bxs-like'></i> </p> 
         </div>
     </div>
 

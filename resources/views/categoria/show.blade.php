@@ -11,11 +11,11 @@
     text-decoration:underline !important;
 }
 
-.id-ep:hover, {
+.id-ep:hover{
   cursor: pointer;
 }
 
-.bx-heart:hover, .bx-add-to-queue:hover{
+.bx-heart:hover, .bx-add-to-queue:hover, .bxs-heart:hover{
   color:#eee;
   cursor: pointer;
 }
@@ -56,7 +56,17 @@ td,  th, tr {
             <tr>
               <th scope="row"><i class="play_audio" audio="{{$ep->name_audio}}" posicao="{{$key+1}}">{{$key+1}}</i></th>
               <td style="color: #eee;">{{$ep->name_ep}}</td>
-              <td> <i class='bx bx-add-to-queue'></i> <i class='bx bx-heart'></i>  {{$ep->temp_audio}}</td>
+              <td> <i class='bx bx-add-to-queue'></i> <i id-ep="{{$ep->id}}" 
+                @if (count($curtidas) != 0)
+                  @foreach ($curtidas as $cut)
+                    @if($cut->id_ep == $ep->id)
+                      class='bx bxs-heart'
+                    @endif
+                  @endforeach
+                @else
+                  class='bx bx-heart'
+                @endif ></i> {{$ep->temp_audio}}
+              </td>
             </tr>
           @endforeach 
         </tbody>
@@ -83,18 +93,6 @@ td,  th, tr {
 </div>
 
 <script>
-/*
-$('.id-ep').on('mouseover', function() {
-  $('.bx-play').show();
-  $('.id-ep').hide();
-});
-
-$('.bx-play').on('mouseout', function() {
-  $('.bx-play').hide();
-  $('.id-ep').show();
-});
-*/
-
 //linha cinza hover 
 $(function(){
   $('table#ep tbody tr').hover(
@@ -141,9 +139,79 @@ $("i.play_audio").click(function() {
   }
 
 });
+
+//salvar status da curtida, curtir
+$("i.bx-heart").click(function() {
+  var id_ep = $(this).attr('id-ep')
+  var acao = $(this)[0];
+
+  var dar_like = document.querySelector("i.bx-heart");
+  var tirar_like = document.querySelector("i.bxs-heart");
+  $(this).toggleClass("bxs-heart bx-heart"); 
+
+  if(acao == dar_like){
+    var dados = {
+      'acao': 1,
+      'id_ep': id_ep,
+    };
+  }
+
+  if(acao == tirar_like){
+    var dados = {
+      'acao': 2,
+      'id_ep': id_ep,
+    };
+  }
+
+  $.ajax({
+    url: "/curtida",
+    headers:{
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    type: 'POST',
+    data: dados,
+    dataType: 'json',
+    success: function(data) {
+      console.log(data)
+    }
+  });
+});
+
+
+//salvar status da curtida, tirar curtidaa
+$("i.bxs-heart").click(function() {
+  var id_ep = $(this).attr('id-ep')
+  var acao = $(this)[0];
+
+  var dar_like = document.querySelector("i.bx-heart");
+  var tirar_like = document.querySelector("i.bxs-heart");
+  $(this).toggleClass("bxs-heart bx-heart"); 
+
+  if(acao == dar_like){
+    var dados = {
+      'acao': 1,
+      'id_ep': id_ep,
+    };
+  }
+
+  if(acao == tirar_like){
+    var dados = {
+      'acao': 2,
+      'id_ep': id_ep,
+    };
+  }
+
+  $.ajax({
+    url: "/curtida",
+    headers:{
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    type: 'POST',
+    data: dados,
+    dataType: 'json',
+    success: function(data) {
+      console.log(data)
+    }
+  });
+});
 </script>
-
-{{-- quando click do coracao mudar o icon  
- 
-
---}}

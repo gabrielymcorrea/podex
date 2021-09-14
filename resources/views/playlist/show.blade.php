@@ -9,12 +9,7 @@
 
 <div class="height-100">
     <div class="row"> 
-        <div style="height:280px; width:280px;">
-            <img src="playlist.png" alt="curtida" class="img-fluid" />
-        </div>
-        <div class="col-md-6" style="margin-top: 30px"> 
-            <h1 style="font-weight:bold;">{{$playlist[0]->nome}}</h1>
-        </div>
+        <h1 style="font-weight:bold;">{{$playlist[0]->nome}}</h1>
     </div>
 
     <div class="row">

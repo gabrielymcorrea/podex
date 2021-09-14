@@ -28,5 +28,8 @@ class CurtidaController extends Controller
         if($request['acao'] == 2){ //2 para tirar curtida
             Curtida::where('id_user',Auth::id())->where('id_ep',$request['id_ep'])->delete();
         }
+
+
+        return true;
     }
 }

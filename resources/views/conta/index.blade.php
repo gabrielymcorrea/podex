@@ -124,7 +124,7 @@
 
             <hr style="color: #3c3a3a;">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control form-perfil" placeholder="Leave a comment here"
                             id="floatingInput" name="name" value="{{ isset($user[0]->name) ? $user[0]->name : '' }}">
@@ -132,12 +132,20 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control form-perfil" placeholder="Leave a comment here"
                             id="floatingInput" name="email"
                             value="{{ isset($user[0]->email) ? $user[0]->email : '' }}">
                         <label for="floatingInput" class="label-perfil">Email</label>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control form-perfil" placeholder="Leave a comment here"
+                            id="NovaSenha" name="nova_senha" value="********">
+                        <label for="NovaSenha" class="label-perfil">Senha</label>
                     </div>
                 </div>
             </div>
@@ -201,4 +209,8 @@ audio.play();
         };
         reader.readAsDataURL(event.target.files[0]);
     };
+
+    $("#NovaSenha").click(function() {
+        $(this).val('');
+    });
 </script>

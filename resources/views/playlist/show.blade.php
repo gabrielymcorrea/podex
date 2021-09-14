@@ -5,11 +5,6 @@
     td, th, tr {
         border: none;
     }
-
-    .bx-trash-alt:hover, .bxs-log-in:hover{
-        color:#eee;
-        cursor: pointer;
-    }
 </style>
 
 <div class="height-100">
@@ -18,8 +13,7 @@
             <img src="playlist.png" alt="curtida" class="img-fluid" />
         </div>
         <div class="col-md-6" style="margin-top: 30px"> 
-            <h1 style="font-weight:bold;"> Minhas playlist</h1>
-            <p> {{Auth::user()->name }} </p>
+            <h1 style="font-weight:bold;">{{$playlist[0]->nome}}</h1>
         </div>
     </div>
 
@@ -33,16 +27,6 @@
             </tr>
           </thead>
           <tbody style="color: #56545a;">
-            @foreach ($playlists as $playlist)
-                <tr>
-                    <td scope="row">{{$playlist->id}}</td>
-                    <td scope="row"><a href="{{route('show_playlist', $playlist->id)}}"> {{$playlist->nome}} </a></td>
-                    <td scope="row">
-                      <a href="{{route('delete_playlist', $playlist->id)}}"><i class='bx bx-trash-alt'></i></a> 
-                      <a href="{{route('show_playlist', $playlist->id)}}"><i class='bx bxs-log-in'></i></a>
-                    </td>
-                </tr>    
-            @endforeach
           </tbody>
         </table>
       </div>

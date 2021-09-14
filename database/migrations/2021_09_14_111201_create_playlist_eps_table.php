@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlaylistsTable extends Migration
+class CreatePlaylistEpsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePlaylistsTable extends Migration
      */
     public function up()
     {
-        Schema::create('playlists', function (Blueprint $table) {
+        Schema::create('playlist_eps', function (Blueprint $table) {
             $table->id();
-            $table->string('nome')->nullable();
-            $table->integer('id_user')->nullable();
+            $table->integer('id_playlist');
+            $table->integer('id_ep');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreatePlaylistsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('playlists');
+        Schema::dropIfExists('playlist_eps');
     }
 }

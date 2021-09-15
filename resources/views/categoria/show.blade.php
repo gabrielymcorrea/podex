@@ -67,7 +67,7 @@
         <tbody style="color: #56545a;">
           @foreach ($eps as $key => $ep)
             <tr>
-              <th scope="row"><i class="play_audio" audio="{{$ep->name_audio}}" posicao="{{$key+1}}">{{$key+1}}</i></th>
+              <th scope="row"><i class="play_audio" audio="{{$ep->name_audio}}" posicao="{{$key+1}}">{{$key+1}} <audio controls src="http://127.0.0.1:8000/storage/audio_ep/{{$ep->name_audio}}"></audio></th>
               <td style="color: #eee;">{{$ep->name_ep}}</td>
               <td> 
                 <a class="nav-link dropdown logado" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -129,7 +129,7 @@ $(function(){
     }
   );
 });
-
+/*
 $("i.play_audio").click(function() {
   const nome_audio = $(this).attr('audio');
   const path_audio = 'http://127.0.0.1:8000/storage/audio_ep/'
@@ -145,7 +145,7 @@ $("i.play_audio").click(function() {
     audio.pause();
   }
 
-});
+});*/
 
 //salvar status da curtida, curtir
 $("i.bx-heart").click(function() {

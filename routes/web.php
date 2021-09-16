@@ -40,6 +40,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/episodio', [EpisodioController::class, 'episodio'])->name('episodio');
 
     Route::get('/playlist', [PlaylistController::class, 'index'])->name('playlist');
+    Route::post('/add_playlist', [PlaylistController::class, 'add_playlist']);
+    Route::post('/delete_playlist', [PlaylistController::class, 'delete_playlist'])->name('delete_playlist');
+    Route::get('/show_playlist/{id}', [PlaylistController::class, 'show_playlist'])->name('show_playlist');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

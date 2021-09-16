@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Curtida;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Playlist;
 
 class CurtidaController extends Controller
 {
     public function index(){
-        $curtidas = Curtida::join('epsodios', 'epsodios.id', '=', 'curtidas.id_ep')->where('curtidas.id_user', Auth::id())->get(['curtidas.*', 'epsodios.*']);
+        $curtidas = Curtida::join('epsodios', 'epsodios.id', '=', 'curtidas.id_ep')
+        ->where('curtidas.id_user', Auth::id())->get(['epsodios.*']);
 
-        return view('curtida.index', compact('curtidas'));
+        $playlist = Playlist::where('id_user', Auth::id())->get();
+        return view('curtida.index', compact('curtidas','playlist'));
     }
 
     //add curtida e tirar curtida
@@ -28,5 +31,8 @@ class CurtidaController extends Controller
         if($request['acao'] == 2){ //2 para tirar curtida
             Curtida::where('id_user',Auth::id())->where('id_ep',$request['id_ep'])->delete();
         }
+
+
+        return true;
     }
 }

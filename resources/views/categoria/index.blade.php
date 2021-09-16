@@ -28,7 +28,10 @@
 
     @media(max-width: 555px){
         .img-fluid {
-            max-width: 85%;
+            max-width: 70%;
+        }
+        .div-categoria{
+            text-align: center;
         }
     }
 

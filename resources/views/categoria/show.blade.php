@@ -131,7 +131,6 @@ $("i.play_audio").click(function() {
 
   var audio = new Audio(caminho_completo);
 
-  
   if (audio.paused) {
     audio.play();
   } else {

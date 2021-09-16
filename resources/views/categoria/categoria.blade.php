@@ -96,6 +96,10 @@
         .img-fluid{
             max-height: 100%;
         }
+
+        #pesquisa{
+            width: 87%;
+        }
     }
 </style>
 

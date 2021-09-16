@@ -28,11 +28,9 @@ class EpisodioController extends Controller
 
         $validator = Validator::make($request->all(), $rule, $messages);
 
-
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->messages());
         }
-
 
         //verifica se o user enviou o audio ep
         if (file_exists($request->file('audio_ep'))) {
@@ -43,20 +41,20 @@ class EpisodioController extends Controller
             $file = $getID3->analyze($request->file('audio_ep'));
             $playtime_seconds = $file['playtime_seconds'];
             $duration = date('H:i:s', $playtime_seconds);
-
+     
             $nome_audio = uniqid() . '.' . $extension; //dando um nove unico para o arquivo
             $request->file('audio_ep')->storeAs('audio_ep', $nome_audio); //salvando audio na pasta
-        }
 
-        //salvando os dados na tabela
-        Epsodio::insert([
-            'name_ep' => $request['nome_ep'],
-            'temp_audio' => $duration,
-            'name_audio' => $nome_audio,
-            'id_user' => Auth::id(),
-            'created_at' => date("Y-m-d H:m:s"),
-            'updated_at' => date("Y-m-d H:m:s")
-        ]);
+            //salvando os dados na tabela
+            Epsodio::insert([
+                'name_ep' => $request['nome_ep'],
+                'temp_audio' => $duration,
+                'name_audio' => $nome_audio,
+                'id_user' => Auth::id(),
+                'created_at' => date("Y-m-d H:m:s"),
+                'updated_at' => date("Y-m-d H:m:s")
+            ]);
+        }
 
         return back()->with('success', 'Episódio adicionada com sucesso');
     }

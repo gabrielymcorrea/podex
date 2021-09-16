@@ -16,11 +16,11 @@
     cursor: pointer;
   }
 
-  .bx-heart:hover, .bx-add-to-queue:hover, .bxs-heart:hover{
+  .bx-heart:hover, .bx-add-to-queue:hover, .bxs-heart:hover, .bx-pause:hover, .bx-play:hover{
     color:#eee;
     cursor: pointer;
   }
-
+  
   td, th, tr {
     border: none;
   }
@@ -67,14 +67,20 @@
         <tbody style="color: #56545a;">
           @foreach ($eps as $key => $ep)
             <tr>
-              <th scope="row"><i class="play_audio" audio="{{$ep->name_audio}}" posicao="{{$key+1}}">{{$key+1}} <audio controls src="http://127.0.0.1:8000/storage/audio_ep/{{$ep->name_audio}}"></audio></th>
+              <th scope="row">
+                <i class="bx bx-play" id="play{{$key}}"></i> 
+                <i class='bx bx-pause' id="pause{{$key}}" style="display: none;"></i>
+                <audio controls id="demo{{$key}}" src="http://127.0.0.1:8000/storage/audio_ep/{{$ep->name_audio}}" style="display: none;"></audio>
+              </th>
               <td style="color: #eee;">{{$ep->name_ep}}</td>
               <td> 
                 <a class="nav-link dropdown logado" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class='bx bx-add-to-queue'></i>       
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                  <li><a class="dropdown-item add_playlist" id-ep="{{$ep->id}}" id-playlist="0">Nova playlist</a></li>
+                  @if(count($playlist) <= 5 )
+                    <li><a class="dropdown-item add_playlist" id-ep="{{$ep->id}}" id-playlist="0">Nova playlist</a></li>
+                  @endif
                   @foreach ($playlist as $play)
                     <li><a class="dropdown-item add_playlist" id-playlist="{{$play->id}}" id-ep="{{$ep->id}}">{{$play->nome}}</a></li>
                   @endforeach
@@ -85,6 +91,8 @@
                     @foreach ($curtidas as $cut)
                       @if($cut->id_ep == $ep->id)
                         class='bx bxs-heart'
+                      @else
+                        class='bx bx-heart'
                       @endif
                     @endforeach
                   @else
@@ -113,39 +121,39 @@ $(function(){
   );
 });
 
-
-//add icone   de play
-$(function(){
-  $('i.play_audio').hover(
-    function(){
-      $(this).text('');
-      $(this).addClass('bx bx-play');
-    },
-    function(){
-      let posicao = $(this).attr('posicao')
-      $(this).text(posicao);
-      $(this).removeClass('bx bx-play');
-
-    }
-  );
-});
-/*
-$("i.play_audio").click(function() {
-  const nome_audio = $(this).attr('audio');
-  const path_audio = 'http://127.0.0.1:8000/storage/audio_ep/'
-
-  let caminho_completo = path_audio+nome_audio;
-
-  var audio = new Audio(caminho_completo);
-
+//play audio
+$("[id^=play]").click(function(event) {
+  const id = this.id.slice(4);
   
-  if (audio.paused) {
-    audio.play();
-  } else {
-    audio.pause();
-  }
+  document.getElementById('demo'+id).play();
+  $(this).hide();
+  $('#pause'+id).show();
+});
 
-});*/
+//pause o audio que esta tocando para que o outro possar dar o play e tomar sozinho, reinicia o time do algo anterior
+document.addEventListener('play', function(e){
+  var audios = document.getElementsByTagName('audio');
+  for(var i = 0, len = audios.length; i < len;i++){
+    if(audios[i] != e.target){
+      var id = audios[i].id
+      var id = id.replace(/[^0-9]/g,'');
+
+      $('#pause'+id).hide();
+      $('#play'+id).show();
+
+      audios[i].pause();
+      audios[i].currentTime = 0
+    }
+  }
+}, true);
+
+//pause audio
+$("[id^=pause]").click(function() {
+  const id = this.id.slice(5);
+  document.getElementById('demo'+id).pause();
+  $(this).hide();
+  $('#play'+id).show();
+});
 
 //salvar status da curtida, curtir
 $("i.bx-heart").click(function() {
@@ -183,7 +191,6 @@ $("i.bx-heart").click(function() {
     }
   });
 });
-
 
 //salvar status da curtida, tirar curtidaa
 $("i.bxs-heart").click(function() {

@@ -6,21 +6,25 @@
         border: none;
     }
 
-    .bx-trash-alt:hover, .bxs-log-in:hover{
+    a{
+      display: inline-block;
+      padding:0px ;
+      color: #56545a;
+    }
+
+    .bx-trash-alt:hover, .bxs-log-in:hover, a:hover{
         color:#eee;
         cursor: pointer;
+    }
+
+    td:hover, tr:hover,h1:hover, p:hover{
+      cursor: default;
     }
 </style>
 
 <div class="height-100">
     <div class="row"> 
-        <div style="height:280px; width:280px;">
-            <img src="playlist.png" alt="curtida" class="img-fluid" />
-        </div>
-        <div class="col-md-6" style="margin-top: 30px"> 
-            <h1 style="font-weight:bold;"> Minhas playlist</h1>
-            <p> {{Auth::user()->name }} </p>
-        </div>
+        <h1 style="font-weight:bold;">Minhas playlist</h1>
     </div>
 
     <div class="row">
@@ -38,7 +42,7 @@
                     <td scope="row">{{$playlist->id}}</td>
                     <td scope="row"><a href="{{route('show_playlist', $playlist->id)}}"> {{$playlist->nome}} </a></td>
                     <td scope="row">
-                      <a href="{{route('delete_playlist', $playlist->id)}}"><i class='bx bx-trash-alt'></i></a> 
+                      <i class='bx bx-trash-alt' id-playlist="{{$playlist->id}}"></i></a> 
                       <a href="{{route('show_playlist', $playlist->id)}}"><i class='bx bxs-log-in'></i></a>
                     </td>
                 </tr>    
@@ -47,3 +51,28 @@
         </table>
       </div>
 </div>
+
+<script>
+ //delete a playlist
+  $("i.bx-trash-alt").click(function() {
+    var id_playlist = $(this).attr('id-playlist');
+
+    var dados = {
+      'id_playlist': id_playlist,
+    };
+
+    $.ajax({
+      url: "/delete_playlist",
+      headers:{
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      type: 'POST',
+      data: dados,
+      dataType: 'json',
+      success: function(data) {
+        window.location.reload();
+      }
+    });
+  });
+
+</script>

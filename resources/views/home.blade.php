@@ -226,7 +226,7 @@
                         Olá, {{Auth::user()->name}}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li><a class="dropdown-item" href="/user/profile">Conta</a></li>
+                        <li><a class="dropdown-item" href="{{route('conta')}}">Conta</a></li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item" href="#">Sair</a></li>

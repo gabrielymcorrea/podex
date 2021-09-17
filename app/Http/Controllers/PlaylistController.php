@@ -67,14 +67,27 @@ class PlaylistController extends Controller
             ->get(['epsodios.*']);
 
         $nomePlaylist =  Playlist::where('id', $id)->get();
+        $id_playlist = $id;
 
-        return view('playlist.show', compact('playlist','nomePlaylist'));
+        return view('playlist.show', compact('playlist','nomePlaylist','id_playlist'));
     }
 
-    public function delete_playlist($id){//id da playlist
-        Playlist::where('id_user',Auth::id())->where('id',$id)->delete();
-        PlaylistEp::where('id_playlist', $id)->delete();
+    public function delete_playlist(Request $request){//id da playlist
+        Playlist::where('id_user',Auth::id())->where('id',$request['id_playlist'])->delete();
+        PlaylistEp::where('id_playlist', $request['id_playlist'])->delete();
 
         return true;
+    }
+
+    public function remove_ep(Request $request){
+        PlaylistEp::where('id_ep', $request['id_ep'])->where('id_playlist', $request['id_playlist'])->delete();
+        return true;
+    }
+    
+    public function renome_playlist(Request $request){
+        $id_playlist = (int)$request['id_playlist'];
+
+        Playlist::where('id', $id_playlist )->where('id_user', Auth::id())->update(['nome' => $request['novo_nome']]);
+        return redirect()->back();
     }
 }

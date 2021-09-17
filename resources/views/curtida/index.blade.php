@@ -7,7 +7,7 @@
     padding:0px ;
   }
 
-  .bx-add-to-queue:hover, .bx-trash-alt:hover {
+  .bx-add-to-queue:hover, .bx-trash-alt:hover, .bx-pause:hover, .bx-play:hover {
     color:#eee;
     cursor: pointer;
   }
@@ -26,6 +26,10 @@
 
   .add_playlist:hover{
     cursor: pointer;
+  }
+
+  td:hover, tr:hover,h1:hover, p:hover{
+    cursor: default;
   }
 </style>
 
@@ -171,9 +175,9 @@
       data: dados,
       dataType: 'json',
       success: function(data) {
-        //console.log(data)
         window.location.reload();
       }
     });
   });
+
 </script>

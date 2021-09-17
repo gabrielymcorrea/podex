@@ -62,6 +62,7 @@ class EpisodioController extends Controller
         return back()->with('success', 'Episódio adicionada com sucesso');
     }
 
+    //usuario dono do ep excluir o ep que ele subiu
     public function delete_ep(Request $request){
         Epsodio::where('id', $request['id_ep'])->delete();
         Curtida::where('id_ep',$request['id_ep'])->delete();

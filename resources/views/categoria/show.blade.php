@@ -138,7 +138,7 @@ $("[id^=play]").click(function(event) {
   $('#pause'+id).show();
 });
 
-//pause o audio que esta tocando para que o outro possar dar o play e tomar sozinho, reinicia o time do algo anterior
+//pause o audio que esta tocando para que o outro possar dar o play e tocar sozinho, reinicia o time do algo anterior
 document.addEventListener('play', function(e){
   var audios = document.getElementsByTagName('audio');
   for(var i = 0, len = audios.length; i < len;i++){
@@ -261,7 +261,7 @@ $("a.add_playlist").click(function() {
   });
 });
 
-//excluit ep
+//excluit ep quando o ep for seu
 $("i.bx-trash-alt").click(function() {
   var id_ep = $(this).attr('id-ep');
 
@@ -277,7 +277,7 @@ $("i.bx-trash-alt").click(function() {
     data: dados,
     dataType: 'json',
     success: function(data) {
-      //window.location.reload();
+      window.location.reload();
     }
   });
 });

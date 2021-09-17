@@ -5,6 +5,9 @@ use App\Models\Epsodio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Curtida;
+use App\Models\PlaylistEp;
+
 
 class EpisodioController extends Controller
 {
@@ -40,7 +43,7 @@ class EpisodioController extends Controller
             $getID3 = new \getID3;
             $file = $getID3->analyze($request->file('audio_ep'));
             $playtime_seconds = $file['playtime_seconds'];
-            $duration = date('H:i:s', $playtime_seconds);
+            $duration = gmdate("H:i:s", $playtime_seconds);
      
             $nome_audio = uniqid() . '.' . $extension; //dando um nove unico para o arquivo
             $request->file('audio_ep')->storeAs('audio_ep', $nome_audio); //salvando audio na pasta
@@ -57,5 +60,13 @@ class EpisodioController extends Controller
         }
 
         return back()->with('success', 'Episódio adicionada com sucesso');
+    }
+
+    public function delete_ep(Request $request){
+        Epsodio::where('id', $request['id_ep'])->delete();
+        Curtida::where('id_ep',$request['id_ep'])->delete();
+        PlaylistEp::where('id_ep',$request['id_ep'])->delete();
+
+        return true;
     }
 }

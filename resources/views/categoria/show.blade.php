@@ -16,7 +16,7 @@
     cursor: pointer;
   }
 
-  .bx-heart:hover, .bx-add-to-queue:hover, .bxs-heart:hover, .bx-pause:hover, .bx-play:hover{
+  .bx-heart:hover, .bx-add-to-queue:hover, .bxs-heart:hover, .bx-pause:hover, .bx-play:hover, .bx-trash-alt:hover{
     color:#eee;
     cursor: pointer;
   }
@@ -36,6 +36,10 @@
 
   .destaque{
     background:#342C2C;
+  }
+
+  td:hover, tr:hover,h1:hover, p:hover{
+    cursor: default;
   }
 </style>
 
@@ -74,17 +78,9 @@
               </th>
               <td style="color: #eee;">{{$ep->name_ep}}</td>
               <td> 
-                <a class="nav-link dropdown logado" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class='bx bx-add-to-queue'></i>       
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                  @if(count($playlist) <= 5 )
-                    <li><a class="dropdown-item add_playlist" id-ep="{{$ep->id}}" id-playlist="0">Nova playlist</a></li>
-                  @endif
-                  @foreach ($playlist as $play)
-                    <li><a class="dropdown-item add_playlist" id-playlist="{{$play->id}}" id-ep="{{$ep->id}}">{{$play->nome}}</a></li>
-                  @endforeach
-                </ul>
+                @if (Auth::user()->id == $ep->id_user)
+                  <i class='bx bx-trash-alt' id-ep="{{$ep->id}}"></i>
+                @endif
                 
                 <i id-ep="{{$ep->id}}" 
                   @if (count($curtidas) != 0)
@@ -98,7 +94,19 @@
                   @else
                     class='bx bx-heart'
                   @endif >
-                </i> {{$ep->temp_audio}}
+                </i> 
+                <a class="nav-link dropdown logado" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class='bx bx-add-to-queue'></i>       
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                  @if(count($playlist) <= 5 )
+                    <li><a class="dropdown-item add_playlist" id-ep="{{$ep->id}}" id-playlist="0">Nova playlist</a></li>
+                  @endif
+                  @foreach ($playlist as $play)
+                    <li><a class="dropdown-item add_playlist" id-playlist="{{$play->id}}" id-ep="{{$ep->id}}">{{$play->nome}}</a></li>
+                  @endforeach
+                </ul>
+                <span>{{$ep->temp_audio}}</span>
               </td>
             </tr>
           @endforeach 
@@ -249,6 +257,27 @@ $("a.add_playlist").click(function() {
     dataType: 'json',
     success: function(data) {
       //console.log(data)
+    }
+  });
+});
+
+//excluit ep
+$("i.bx-trash-alt").click(function() {
+  var id_ep = $(this).attr('id-ep');
+
+  var dados = {
+    'id_ep': id_ep,
+  };
+  $.ajax({
+    url: "/delete_ep",
+    headers:{
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    type: 'POST',
+    data: dados,
+    dataType: 'json',
+    success: function(data) {
+      //window.location.reload();
     }
   });
 });

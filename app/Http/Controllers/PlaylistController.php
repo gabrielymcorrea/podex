@@ -64,9 +64,11 @@ class PlaylistController extends Controller
             ->join('epsodios', 'epsodios.id', '=', 'playlist_eps.id_ep')
             ->where('playlists.id_user', Auth::id())
             ->where('playlists.id', $id)
-            ->get(['playlists.nome', 'epsodios.*']);
+            ->get(['epsodios.*']);
 
-        return view('playlist.show', compact('playlist'));
+        $nomePlaylist =  Playlist::where('id', $id)->get();
+
+        return view('playlist.show', compact('playlist','nomePlaylist'));
     }
 
     public function delete_playlist($id){//id da playlist

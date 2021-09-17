@@ -7,7 +7,7 @@
     padding:0px ;
   }
 
-  .bx-add-to-queue:hover, .bx-trash-alt:hover {
+  .bx-add-to-queue:hover, .bx-trash-alt:hover, .bxs-edit:hover {
     color:#eee;
     cursor: pointer;
   }
@@ -31,7 +31,7 @@
 
 <div class="height-100">
     <div class="row"> 
-        <h1 style="font-weight:bold;">{{$playlist[0]->nome}}</h1>
+        <h1 style="font-weight:bold;">{{$nomePlaylist[0]->nome}} <i class='bx bxs-edit'></i></h1>
     </div>
 
     <div class="row">
@@ -44,7 +44,7 @@
             </tr>
           </thead>
           <tbody style="color: #56545a;">
-            @foreach ($playlists as $key => $ep)
+            @foreach ($playlist as $key => $ep)
               <tr>
                 <th scope="row">
                   <i class="bx bx-play" id="play{{$key}}"></i> 
@@ -114,5 +114,9 @@
   //remove na playlist
   $("i.bx-trash-alt").click(function() {
     
+  });
+
+  $('i.bxs-edit').click(function() {
+    console.log('ola');
   });
 </script>

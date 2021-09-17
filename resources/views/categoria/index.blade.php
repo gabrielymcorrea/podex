@@ -26,7 +26,7 @@
         filter: brightness(50%);
     }
 
-    @media(max-width: 555px){
+    @media(max-width:766px){
         .img-fluid {
             max-width: 70%;
         }
@@ -34,6 +34,7 @@
             text-align: center;
         }
     }
+
 
 </style>
 

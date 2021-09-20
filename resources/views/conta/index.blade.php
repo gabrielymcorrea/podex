@@ -96,6 +96,12 @@
         </div>
     @endif
 
+    @if (\Session::has('success'))
+        <div class="alert alert-primary" role="alert">
+            {!! \Session::get('success') !!}
+        </div>
+    @endif
+
     <div style="padding-top:30px;" class="row">
         <div class="col-md-12">
             <p class="tiulo"> Informações da conta</p>
@@ -212,5 +218,13 @@ audio.play();
 
     $("#NovaSenha").click(function() {
         $(this).val('');
+    });
+
+    $(document).ready(function(){			
+        setTimeout(function() {
+        $(".alert").fadeOut("slow", function(){
+            $(this).alert('close');
+        });				
+        }, 5000);			
     });
 </script>

@@ -60,6 +60,12 @@
     </div>
     @endif
 
+    @if (\Session::has('success'))
+        <div class="alert alert-primary" role="alert">
+            {!! \Session::get('success') !!}
+        </div>
+    @endif
+
     <div style="padding-top:30px;" class="row">
         <div class="col-md-12">
             <p class="tiulo"> Poste novos episódios</p>
@@ -88,9 +94,12 @@
     </div>
 
 </div>
-{{-- <audio controls muted>
-            <source src="{{asset('storage/audio_ep/'.$podcast[0]->name_audio)}}" type="audio/ogg">
-
-var audio = new Audio('audio_file.mp3');
-audio.play();
-</audio> --}}
+<script>
+    $(document).ready(function(){			
+        setTimeout(function() {
+        $(".alert").fadeOut("slow", function(){
+            $(this).alert('close');
+        });				
+        }, 5000);			
+    });
+</script>

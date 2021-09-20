@@ -31,9 +31,23 @@
   td:hover, tr:hover,h1:hover, p:hover{
     cursor: default;
   }
+
+  .alert-js{
+    height: 25px;
+    background-color: #fff;
+    color: #000;
+    position: absolute;
+    left: 50%;
+    width: 25px;
+    bottom: 100px;
+  }
 </style>
 
 <div class="height-100">
+    <div style="height:10px; background-color: #fff; color: #000;">
+
+    </div>
+
     <div class="row"> 
         <div style="height:280px; width:280px;">
             <img src="curtida.png" alt="curtida" class="img-fluid" />

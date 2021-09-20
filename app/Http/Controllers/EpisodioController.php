@@ -59,7 +59,7 @@ class EpisodioController extends Controller
             ]);
         }
 
-        return back()->with('success', 'Episódio adicionada com sucesso');
+        return back()->with('success', 'Episódio adicionado com sucesso');
     }
 
     //usuario dono do ep excluir o ep que ele subiu

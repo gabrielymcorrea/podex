@@ -23,6 +23,8 @@
 </style>
 
 <div class="height-100">
+    <div class="add-alert"></div>
+    
     <div class="row"> 
         <h1 style="font-weight:bold;">Minhas playlist</h1>
     </div>
@@ -70,7 +72,12 @@
       data: dados,
       dataType: 'json',
       success: function(data) {
-        window.location.reload();
+        $(".div-alert").remove();
+        var frase = 'Playlist deletada';
+        $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
+        setTimeout(function(){ 
+          window.location.reload();   
+        }, 1000);
       }
     });
   });

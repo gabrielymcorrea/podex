@@ -44,9 +44,7 @@
 </style>
 
 <div class="height-100">
-    <div style="height:10px; background-color: #fff; color: #000;">
-
-    </div>
+    <div class="add-alert"></div>
 
     <div class="row"> 
         <div style="height:280px; width:280px;">
@@ -100,6 +98,11 @@
 </div>
 
 <script>
+  //remove alert
+  setTimeout(function(){ 
+    $('.div-alert').remove();   
+  }, 6000);
+
   //linha cinza hover 
   $(function(){
     $('table#curtida tbody tr').hover(
@@ -166,7 +169,9 @@
       data: dados,
       dataType: 'json',
       success: function(data) {
-        //console.log(data)
+        $(".div-alert").remove();
+        var frase = 'Adicionado na playlist';
+        $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
       }
     });
   });
@@ -189,7 +194,12 @@
       data: dados,
       dataType: 'json',
       success: function(data) {
-        window.location.reload();
+        $(".div-alert").remove();
+        var frase = 'Curtida removida';
+        $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
+        setTimeout(function(){ 
+          window.location.reload();   
+        }, 1000);
       }
     });
   });

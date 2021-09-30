@@ -75,6 +75,8 @@
 </style>
 
 <div class="height-100">
+  <div class="add-alert"></div>
+
   <!-- Modal mudar nome playlist-->
   <div class="modal fade" id="renome_playlist" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -145,6 +147,11 @@
 </div>
 
 <script>
+  //remove alert
+  setTimeout(function(){ 
+    $('.div-alert').remove();   
+  }, 6000);
+
   //linha cinza hover 
   $(function(){
     $('table#curtida tbody tr').hover(
@@ -211,7 +218,12 @@
       data: dados,
       dataType: 'json',
       success: function(data) {
-        window.location.reload();
+        $(".div-alert").remove();
+        var frase = 'Removido da playlist';
+        $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
+        setTimeout(function(){ 
+          window.location.reload();   
+        }, 1000);
       }
     });
   });

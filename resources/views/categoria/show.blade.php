@@ -44,6 +44,7 @@
 </style>
 
 <div class="height-100">
+    <div class="add-alert"></div>
     <div class="row"> 
         <div style="height:280px; width:280px;">
           @if ($data[0]->profile_photo_path)
@@ -195,7 +196,6 @@ $("i.bx-heart").click(function() {
     data: dados,
     dataType: 'json',
     success: function(data) {
-      console.log(data)
     }
   });
 });
@@ -232,7 +232,6 @@ $("i.bxs-heart").click(function() {
     data: dados,
     dataType: 'json',
     success: function(data) {
-      //console.log(data)
     }
   });
 });
@@ -256,7 +255,9 @@ $("a.add_playlist").click(function() {
     data: dados,
     dataType: 'json',
     success: function(data) {
-      //console.log(data)
+      $(".div-alert").remove();
+      var frase = 'Adicionado na playlist';
+      $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
     }
   });
 });
@@ -277,7 +278,12 @@ $("i.bx-trash-alt").click(function() {
     data: dados,
     dataType: 'json',
     success: function(data) {
-      window.location.reload();
+      $(".div-alert").remove();
+      var frase = 'Episódio removido';
+      $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
+      setTimeout(function(){ 
+        window.location.reload();   
+      }, 1000);
     }
   });
 });

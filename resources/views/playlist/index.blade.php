@@ -40,7 +40,7 @@
           </thead>
           <tbody style="color: #56545a;">
             @foreach ($playlists as $playlist)
-                <tr>
+                <tr id="{{$playlist->id}}">
                     <td scope="row">{{$playlist->id}}</td>
                     <td scope="row"><a href="{{route('show_playlist', $playlist->id)}}"> {{$playlist->nome}} </a></td>
                     <td scope="row">
@@ -75,9 +75,7 @@
         $(".div-alert").remove();
         var frase = 'Playlist deletada';
         $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
-        setTimeout(function(){ 
-          window.location.reload();   
-        }, 1000);
+        $('#'+id_playlist).hide();
       }
     });
   });

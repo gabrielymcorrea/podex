@@ -68,7 +68,7 @@
           </thead>
           <tbody style="color: #56545a;">
             @foreach ($curtidas as $key => $ep)
-              <tr>
+              <tr id="{{$ep->id}}">
                 <th scope="row">
                   <i class="bx bx-play" id="play{{$key}}"></i> 
                   <i class='bx bx-pause' id="pause{{$key}}" style="display: none;"></i>
@@ -197,9 +197,7 @@
         $(".div-alert").remove();
         var frase = 'Curtida removida';
         $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
-        setTimeout(function(){ 
-          window.location.reload();   
-        }, 1000);
+        $('#'+id_ep).hide();
       }
     });
   });

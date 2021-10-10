@@ -78,7 +78,7 @@
                 <audio controls id="demo{{$key}}" src="http://127.0.0.1:8000/storage/audio_ep/{{$ep->name_audio}}" style="display: none;"></audio>
               </th>
               <td style="color: #eee;">{{$ep->name_ep}}</td>
-              <td> 
+              <td id="{{$ep->id}}"> 
                 @if (Auth::user()->id == $ep->id_user)
                   <i class='bx bx-trash-alt' id-ep="{{$ep->id}}"></i>
                 @endif
@@ -281,9 +281,7 @@ $("i.bx-trash-alt").click(function() {
       $(".div-alert").remove();
       var frase = 'Episódio removido';
       $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
-      setTimeout(function(){ 
-        window.location.reload();   
-      }, 1000);
+      $('#'+id_ep).hide();
     }
   });
 });

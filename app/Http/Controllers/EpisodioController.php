@@ -7,11 +7,20 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Curtida;
 use App\Models\PlaylistEp;
+use App\Models\User;
+use App\Models\Categoria;
 
 
 class EpisodioController extends Controller
 {
     public function index(){
+        $user = User::where('id', Auth::id())->get();
+        dd(empty($user[0]->name_podcast));
+        $categorias = Categoria::get();
+        if(empty($user[0]->name_podcast) and empty($user[0]->id_categoria) and empty($user[0]->descricao)){
+            return view('conta.index', compact('user', 'categorias'));
+        }
+       
         return view('canal.index');
     }
     

@@ -15,9 +15,15 @@ class EpisodioController extends Controller
 {
     public function index(){
         $user = User::where('id', Auth::id())->get();
-        dd(empty($user[0]->name_podcast));
         $categorias = Categoria::get();
-        if(empty($user[0]->name_podcast) and empty($user[0]->id_categoria) and empty($user[0]->descricao)){
+        
+        if(empty($user[0]->name_podcast)){
+            return view('conta.index', compact('user', 'categorias'));
+        }
+        if(empty($user[0]->id_categoria)){
+            return view('conta.index', compact('user', 'categorias'));
+        }
+        if(empty($user[0]->descricao)){
             return view('conta.index', compact('user', 'categorias'));
         }
        

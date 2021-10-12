@@ -44,7 +44,7 @@
     }
 
     .destaque {
-        background: #342C2C;
+      background: #262626;
     }
 
     td:hover,
@@ -123,16 +123,16 @@
       <table class="table" id="ep">
         <thead style="border-bottom: 1px solid #342C2C;">
           <tr style="color: #56545a;">
-            <th scope="col">#</th>
+            <th scope="col " style="width: 30px">#</th>
             <th scope="col">Título</th>
-            <th scope="col"><i class='bx bx-time'></i></th>
+            <th scope="col" style="width: 200px"></th>
           </tr>
         </thead>
         
         <tbody style="color: #56545a;">
           @foreach ($eps as $key => $ep)
             <tr id="{{ $ep->id }}">
-              <td scope="row" style="width: 50px">
+              <td scope="row" style="width: 40px">
                 <i class="bx bx-play" id="play{{ $key }}"></i>
                 <i class='bx bx-pause' id="pause{{ $key }}" style="display: none;"></i>
                 <audio controls id="demo{{ $key }}" src="http://127.0.0.1:8000/storage/audio_ep/{{ $ep->name_audio }}" style="display: none;"></audio>
@@ -224,15 +224,14 @@
 
     //linha cinza hover 
     $(function() {
-        $('table#ep tbody tr').hover(
-            function() {
-                $(this).addClass('destaque');
-            },
-            function() {
-                $(this).removeClass('destaque');
-
-            }
-        );
+      $('table#ep tbody tr').hover(
+        function() {
+          $(this).addClass('destaque');
+        },
+        function() {
+          $(this).removeClass('destaque');
+        }
+      );
     });
 
     //play audio

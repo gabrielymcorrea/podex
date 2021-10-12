@@ -21,7 +21,7 @@
   }
 
   .destaque{
-    background:#342C2C;
+    background:#262626;
   }
 
   .add_playlist:hover{
@@ -121,21 +121,21 @@
       <table class="table" id="ep">
         <thead style="border-bottom: 1px solid #342C2C;">
           <tr style="color: #56545a;">
-            <th scope="col">#</th>
+            <th scope="col" style="width: 30px">#</th>
             <th scope="col" >Nome</th>
-            <th scope="col"></th>
+            <th scope="col" style="width: 200px"></th>
           </tr>
         </thead>
         <tbody style="color: #56545a;">
           @foreach ($playlist as $key => $ep)
             <tr id="{{$ep->id }}">
-              <th scope="row">
+              <td scope="row" style="width: 40px">
                 <i class="bx bx-play" id="play{{$key}}"></i> 
                 <i class='bx bx-pause' id="pause{{$key}}" style="display: none;"></i>
                 <audio controls id="demo{{$key}}" src="http://127.0.0.1:8000/storage/audio_ep/{{$ep->name_audio}}" style="display: none;"></audio>
-              </th>
+              </td>
               <td style="color: #eee;">{{$ep->name_ep}}</td>
-              <td> 
+              <td style="width: 200px"> 
                 <i class='bx bx-trash-alt' id-ep="{{$ep->id}}" id-playlist="{{$id_playlist}}"></i>
                 {{$ep->temp_audio}}
               </td>

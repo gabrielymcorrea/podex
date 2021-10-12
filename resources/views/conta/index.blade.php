@@ -124,7 +124,6 @@
                     @endif
                 </div>
                 <div class="col-md-6">
-                    {{-- <input type="file" class="form-audio" accept="image/*" onchange="loadFile(event)" /> --}}
                     <div class="upload-btn-wrapper">
                         <button class="btn-file"><i class='bx bx-upload' ></i></button>
                         <input type="file" name="capa_canal" onchange="loadFile(event)" accept="image/*"/>

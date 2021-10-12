@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/add_ep' , [EpisodioController::class, 'index'])->name('add_ep');
     Route::post('/episodio', [EpisodioController::class, 'episodio'])->name('episodio');
     Route::post('/delete_ep', [EpisodioController::class, 'delete_ep']);
+    Route::post('/edit_titulo', [EpisodioController::class, 'trocar_titulo'])->name('edit_titulo');
     
 
     Route::get('/playlist', [PlaylistController::class, 'index'])->name('playlist');

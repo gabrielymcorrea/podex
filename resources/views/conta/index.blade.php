@@ -82,6 +82,10 @@
         }
     }
 
+    img {
+        height:280px !important;
+        object-fit: cover;
+    }
  
 </style>
 
@@ -112,7 +116,7 @@
         <form method="post" action="{{ route('canal') }}" enctype="multipart/form-data">
             @csrf
             <div class="row">  
-                <div style="height:280px; width:280px;">
+                <div style="height:280px; width:300px;">
                     @if ($user[0]->profile_photo_path)
                         <img src="{{ asset('storage/' . $user[0]->profile_photo_path) }}" alt="{{ $user[0]->name_podcast }}" class="img-fluid" id="mostraFoto" />
                     @else
@@ -123,7 +127,7 @@
                     {{-- <input type="file" class="form-audio" accept="image/*" onchange="loadFile(event)" /> --}}
                     <div class="upload-btn-wrapper">
                         <button class="btn-file"><i class='bx bx-upload' ></i></button>
-                        <input type="file" name="capa_canal" onchange="loadFile(event)" />
+                        <input type="file" name="capa_canal" onchange="loadFile(event)" accept="image/*"/>
                     </div>
                 </div>
             </div>
@@ -133,7 +137,7 @@
                 <div class="col-md-4">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control form-perfil" placeholder="Leave a comment here"
-                            id="floatingInput" name="name" value="{{ isset($user[0]->name) ? $user[0]->name : '' }}">
+                            id="floatingInput" name="name" value="{{ isset($user[0]->name) ? $user[0]->name : '' }}" required>
                         <label for="floatingInput" class="label-perfil">Nome usuario</label>
                     </div>
                 </div>
@@ -142,7 +146,7 @@
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control form-perfil" placeholder="Leave a comment here"
                             id="floatingInput" name="email"
-                            value="{{ isset($user[0]->email) ? $user[0]->email : '' }}">
+                            value="{{ isset($user[0]->email) ? $user[0]->email : '' }}" required>
                         <label for="floatingInput" class="label-perfil">Email</label>
                     </div>
                 </div>
@@ -196,15 +200,7 @@
             </div>
         </form>
     </div>
-
-
 </div>
-{{-- <audio controls muted>
-            <source src="{{asset('storage/audio_ep/'.$podcast[0]->name_audio)}}" type="audio/ogg">
-
-var audio = new Audio('audio_file.mp3');
-audio.play();
-</audio> --}}
 
 <script>
     var loadFile = function(event) {

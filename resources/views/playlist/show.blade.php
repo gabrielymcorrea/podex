@@ -7,7 +7,7 @@
     padding:0px ;
   }
 
-  .bx-add-to-queue:hover, .bx-trash-alt:hover, .bxs-edit:hover {
+  .bx-add-to-queue:hover, .bx-trash-alt:hover, .bxs-edit:hover, .bx-play:hover , .bx-pause:hover{
     color:#eee;
     cursor: pointer;
   }

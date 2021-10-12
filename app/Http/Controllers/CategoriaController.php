@@ -24,7 +24,7 @@ class CategoriaController extends Controller
         $eps = Epsodio::where('id_user', $id)->get();
         $curtidas = Curtida::where('id_user', Auth::id())->get();
         $playlist =  Playlist::where('id_user', Auth::id())->get();
-
+        
         return view('categoria.show', compact('data','eps','curtidas','playlist'));
     }
 }

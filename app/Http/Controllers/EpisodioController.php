@@ -85,4 +85,10 @@ class EpisodioController extends Controller
 
         return true;
     }
+
+    public function trocar_titulo(Request $request){
+        Epsodio::where('id_user', Auth::id())->where('id', $request['id_ep'])->update(['name_ep' => $request['novo_titulo']]);
+
+        return back()->with('success', 'Título editado com sucesso');
+    }
 }

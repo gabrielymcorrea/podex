@@ -7,7 +7,11 @@
         border-radius: 3px;
         height: 330px;
         background-color: #181818;
-        /*border: 1px solid #c5c5c5;*/
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
     }
 
     .card-categoria:hover {

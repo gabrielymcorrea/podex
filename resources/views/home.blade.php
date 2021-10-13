@@ -98,7 +98,7 @@
         .logado{
             float:right;
             color: #eee;
-            font-size:1.5rem;
+            font-size:1.2rem;
             text-decoration: none;
             font-family: var(--body-font);
         }

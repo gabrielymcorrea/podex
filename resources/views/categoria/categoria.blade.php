@@ -8,7 +8,11 @@
         height: 330px;
         color: #fff;
         background-color: #181818;
-        /*border: 1px solid #c5c5c5;*/
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
     }
 
     .card-categoria:hover{
@@ -89,16 +93,18 @@
         }
     }
 
+    @media(max-width:1007px){
+        #pesquisa{
+            width: 87%;
+        }
+    }
+
     @media(max-width:450px){
         .card-categoria{
             height: 430px;
         }
         .img-fluid{
             max-height: 100%;
-        }
-
-        #pesquisa{
-            width: 87%;
         }
     }
 </style>

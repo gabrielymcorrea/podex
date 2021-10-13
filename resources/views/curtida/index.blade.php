@@ -21,7 +21,7 @@
   }
 
   .destaque{
-    background:#342C2C;
+    background:#262626;
   }
 
   .add_playlist:hover{
@@ -61,9 +61,9 @@
         <table class="table" id="curtida">
           <thead style="border-bottom: 1px solid #342C2C;">
             <tr style="color: #56545a;">
-              <th scope="col">#</th>
+              <th scope="col" style="width: 30px">#</th>
               <th scope="col" >Título</th>
-              <th scope="col"><i class='bx bx-time'></i></th>
+              <th scope="col" style="width: 200px"></i></th>
             </tr>
           </thead>
           <tbody style="color: #56545a;">

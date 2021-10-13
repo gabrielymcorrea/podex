@@ -27,7 +27,6 @@
         body {
             margin-top: 20px;
             background-color: #121212;
-            font-family: var(--body-font);
             color: #eee;
             overflow: hidden;
         }
@@ -240,10 +239,13 @@
 
             <div class="row" style="margin-top: 70px;">
                 <div class="col-6 sobre">
-                    <h4> Um pouquinho sobre quem somos </h4>
-                    <p> Três colegas em busca da realização do tcc. A meta é se livrar dessa merda de rolê(faculdade)
-                        que ta chatão já kkkk(cada K uma lagrima), embarque nessa aventura com a gente? <a
-                            href="{{route('dashboard')}}" class="link_login"> bora lá </a>
+                    <h4> Quem nós Somos? </h4>
+                    <p> Nós somos um pequeno grupo de universitários com uma grande ideia,
+                        fornecer a todos uma forma de entretenimento fácil, rápida, acessível e gratuita. Pensando nisso, nós criamos o Podex, a plataforma que tem a ideia de inovar a forma
+                        como os Podcasts serão vistos (e ouvidos) Vem com a gente e conhecer os mais váriados podcasts já existentes?
+                        <a href="{{route('dashboard')}}" class="link_login"> bora lá </a>
+                    <p> 
+                        
                     <div>
                         <i class='bx bxl-facebook-square rede_social'></i>
                         <i class='bx bxl-instagram-alt rede_social'></i>

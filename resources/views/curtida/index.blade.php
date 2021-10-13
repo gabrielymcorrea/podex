@@ -76,9 +76,9 @@
                 </th>
                 <td style="color: #eee;">{{$ep->name_ep}}</td>
                 <td> 
-                  <i class='bx bx-trash-alt' id-ep="{{$ep->id}}"></i>
+                  <i class='bx bx-trash-alt' id-ep="{{$ep->id}}" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletar"></i>
                   <a class="nav-link dropdown logado" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class='bx bx-add-to-queue'></i>       
+                    <i class='bx bx-add-to-queue' data-bs-toggle="tooltip" data-bs-placement="right" title="Adicionar playlist"></i>       
                   </a>
                   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                     @if(count($playlist) <= 5 )
@@ -101,7 +101,7 @@
   //remove alert
   setTimeout(function(){ 
     $('.div-alert').remove();   
-  }, 6000);
+  }, 5000);
 
   //linha cinza hover 
   $(function(){
@@ -172,6 +172,11 @@
         $(".div-alert").remove();
         var frase = 'Adicionado na playlist';
         $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
+
+        //remove alert
+        setTimeout(function() {
+          $('.div-alert').remove();
+        }, 4000);
       }
     });
   });
@@ -198,6 +203,11 @@
         var frase = 'Curtida removida';
         $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
         $('#'+id_ep).hide();
+
+        //remove alert
+        setTimeout(function() {
+          $('.div-alert').remove();
+        }, 4000);
       }
     });
   });

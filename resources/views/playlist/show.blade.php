@@ -72,6 +72,27 @@
     -webkit-text-fill-color: #fff !important;
     -webkit-box-shadow: 0 0 0px 1000px #222222 inset !important;
   }
+
+  
+  .btn-close:focus, .btn:focus {
+    box-shadow: none;
+  }
+
+  .form-perfil {
+    color: #fff;
+    background-color: #181818;
+    border: none;
+    border-radius: 0;
+  }
+
+  .form-perfil,
+  .form-perfil:hover,
+  .form-perfil:focus,
+  .form-perfil:active {
+    color: #fff;
+    -webkit-text-fill-color: #8f8d8d ;
+    -webkit-box-shadow: 0 0 0px 1000px #222222 inset;
+  }
 </style>
 
 <div class="height-100">
@@ -82,24 +103,17 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Trocar nome {{$nomePlaylist[0]->nome}}</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Trocar nome</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form method="post" action="{{ route('renome_playlist') }}">
             @csrf
             <input type="hidden" value="{{$id_playlist}}" name="id_playlist">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-floating mb-3">
-                  <input type="text" class="form-control form-perfil" placeholder="Leave a comment here" id="floatingInput" name="novo_nome">
-                  <label for="floatingInput" class="label-perfil">Novo nome</label>
-                </div>
-              </div>
-
-              <div class="col-md-12">
-                <button class="btn btn-enviar" type="submit" style="float:right;margin-bottom:20px"> Salvar </button>
-              </div>
+            <div style="display: flex;">
+              <input type="hidden" id="id_ep" name="id_ep"/>
+              <input type="text" placeholder="Novo nome" name="novo_nome" class="form-control form-perfil" />
+              <button type="submit" class="btn" style="color: #eee;border-radius: 0; background:#222222"> <i class='bx bx-send' data-bs-toggle="tooltip" data-bs-placement="right" title="Enviar alterações"></i> </button>
             </div>
           </form>
         </div>
@@ -136,7 +150,7 @@
               </td>
               <td style="color: #eee;">{{$ep->name_ep}}</td>
               <td style="width: 200px"> 
-                <i class='bx bx-trash-alt' id-ep="{{$ep->id}}" id-playlist="{{$id_playlist}}"></i>
+                <i class='bx bx-trash-alt' id-ep="{{$ep->id}}" id-playlist="{{$id_playlist}}" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletar"></i>
                 {{$ep->temp_audio}}
               </td>
             </tr>
@@ -150,7 +164,7 @@
   //remove alert
   setTimeout(function(){ 
     $('.div-alert').remove();   
-  }, 6000);
+  }, 4000);
 
   //linha cinza hover 
   $(function(){
@@ -222,6 +236,11 @@
         var frase = 'Removido da playlist';
         $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
         $('#'+id_ep).hide();
+
+        //remove alert
+        setTimeout(function() {
+          $('.div-alert').remove();
+        }, 4000);
       }
     });
   });

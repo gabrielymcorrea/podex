@@ -44,8 +44,8 @@
                     <td scope="row">{{$playlist->id}}</td>
                     <td scope="row"><a href="{{route('show_playlist', $playlist->id)}}"> {{$playlist->nome}} </a></td>
                     <td scope="row">
-                      <i class='bx bx-trash-alt' id-playlist="{{$playlist->id}}"></i></a> 
-                      <a href="{{route('show_playlist', $playlist->id)}}"><i class='bx bxs-log-in'></i></a>
+                      <i class='bx bx-trash-alt' id-playlist="{{$playlist->id}}" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletar"></i></a> 
+                      <a href="{{route('show_playlist', $playlist->id)}}" data-bs-toggle="tooltip" data-bs-placement="right" title="Ir playlist"><i class='bx bxs-log-in'></i></a>
                     </td>
                 </tr>    
             @endforeach
@@ -76,6 +76,11 @@
         var frase = 'Playlist deletada';
         $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
         $('#'+id_playlist).hide();
+
+        //remove alert
+        setTimeout(function() {
+          $('.div-alert').remove();
+        }, 4000);
       }
     });
   });

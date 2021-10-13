@@ -218,7 +218,7 @@
                 <div class="col-md-12" style="text-align: center;">
                     <button class="btn btn-enviar" type="submit"> Entrar </button>
                 </div>
-                <a href="{{route('register')}}" style="text-align: center;color: #eee;text-decoration:none;">Não possui conta? cadastra-se</a>
+                <a href="{{route('register')}}" style="text-align: center;color: #eee;text-decoration:none;">Não possui conta? cadastre-se</a>
             </div>
         </form>
     </div>

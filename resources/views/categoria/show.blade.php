@@ -3,18 +3,18 @@
 
 <style>
     .podcast_por {
-        color: #eee;
-        font-size: 1.3rem;
+      color: #eee;
+      font-size: 1.3rem;
     }
 
     .podcast_por:hover {
-        color: #4723D9;
-        text-decoration: underline !important;
+      color: #4723D9;
+      text-decoration: underline !important;
     }
 
     .id-ep:hover,
     .add_playlist:hover {
-        cursor: pointer;
+      cursor: pointer;
     }
 
     .bx-heart:hover,
@@ -24,23 +24,23 @@
     .bx-play:hover,
     .bx-trash-alt:hover,
     .bx-edit-alt:hover {
-        color: #eee;
-        cursor: pointer;
+      color: #eee;
+      cursor: pointer;
     }
 
     td,
     th,
     tr {
-        border: none;
+      border: none;
     }
 
     .bx-add-to-queue {
-        color: #56545a;
+      color: #56545a;
     }
 
     .nav-link {
-        display: inline-block;
-        padding: 0px;
+      display: inline-block;
+      padding: 0px;
     }
 
     .destaque {
@@ -92,6 +92,17 @@
       -webkit-box-shadow: 0 0 0px 1000px #222222 inset;
     }
 
+    .footer-play{
+      width: 100%;
+      height: 100px;
+      background: #000;
+      color: #fff;
+      padding: 0px;
+      margin: 0px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
 </style>
 
 
@@ -142,13 +153,13 @@
               
               <td style="width: 200px">
                 @if (Auth::user()->id == $ep->id_user)
-                  <i class='bx bx-trash-alt' id-ep="{{ $ep->id }}"></i>
+                  <i class='bx bx-trash-alt' id-ep="{{ $ep->id }}" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletar"></i>
                 @endif
 
                 @if (Auth::user()->id == $ep->id_user)
-                  <i class='bx bx-edit-alt' id-ep="{{ $ep->id }}" data-bs-toggle="modal" data-bs-target="#modalEdit"></i>
+                  <i class='bx bx-edit-alt' id-ep="{{ $ep->id }}" data-bs-toggle="modal" data-bs-target="#modalEdit" data-bs-toggle="tooltip" data-bs-placement="right" title="Editar"></i>
                 @else
-                  <i id-ep="{{ $ep->id }}" 
+                  <i id-ep="{{ $ep->id }}" data-bs-toggle="tooltip" data-bs-placement="right" title="Curtir"
                     @if (count($curtidas) != 0)
                       @foreach ($curtidas as $cut)
                         @if ($cut->id_ep == $ep->id)
@@ -163,7 +174,7 @@
                   </i>
                   <a class="nav-link dropdown logado" href="#" id="navbarDarkDropdownMenuLink" role="button"
                       data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class='bx bx-add-to-queue'></i>
+                      <i class='bx bx-add-to-queue' data-bs-toggle="tooltip" data-bs-placement="right" title="Criar playlist"></i>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                       @if (count($playlist) <= 5)
@@ -192,7 +203,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Novo título</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" data-bs-toggle="tooltip" data-bs-placement="right" title="Sair"></button>
             </div>
             <div class="modal-body">
               <form action="{{ route('edit_titulo') }}" method="POST">
@@ -200,12 +211,21 @@
                 <div style="display: flex;">
                   <input type="hidden" id="id_ep" name="id_ep"/>
                   <input type="text" placeholder="Novo título" name="novo_titulo" class="form-control form-perfil" />
-                  <button type="submit" class="btn" style="color: #eee;border-radius: 0; background:#222222"> <i class='bx bx-send'></i> </button>
+                  <button type="submit" class="btn" style="color: #eee;border-radius: 0; background:#222222"> <i class='bx bx-send' data-bs-toggle="tooltip" data-bs-placement="right" title="Enviar alterações"></i> </button>
                 </div>
               </form>
             </div>
           </div>
         </div>
+      </div>
+    </div> 
+
+    <div class="footer-play">
+      <div style="display: flex; justify-content: center;"> 
+        <div class="row" style="display: flex; flex-wrap: nowrap; flex-direction: row;justify-content: center;"> 
+          <i class='bx bx-arrow-to-left'></i> <i class='bx bxs-caret-right-square'></i> <i class='bx bx-arrow-to-right' ></i> 
+        </div>
+        <div class="row"></div>
       </div>
     </div>
 </div>
@@ -213,8 +233,8 @@
 <script>
     //remove alert
     setTimeout(function() {
-        $('.div-alert').remove();
-    }, 6000);
+      $('.div-alert').remove();
+    }, 4000);
 
     setTimeout(function() {
       $(".alert").fadeOut("slow", function(){
@@ -270,116 +290,141 @@
 
     //salvar status da curtida, curtir
     $("i.bx-heart").click(function() {
-        var id_ep = $(this).attr('id-ep')
-        var acao = $(this)[0];
+      var id_ep = $(this).attr('id-ep')
+      var acao = $(this)[0];
 
-        var dar_like = document.querySelector("i.bx-heart");
-        var tirar_like = document.querySelector("i.bxs-heart");
-        $(this).toggleClass("bxs-heart bx-heart");
+      var dar_like = document.querySelector("i.bx-heart");
+      var tirar_like = document.querySelector("i.bxs-heart");
+      $(this).toggleClass("bxs-heart bx-heart");
 
-        if (acao == dar_like) {
-            var dados = {
-                'acao': 1,
-                'id_ep': id_ep,
-            };
+      if (acao == dar_like) {
+        var dados = {
+            'acao': 1,
+            'id_ep': id_ep,
+        };
+      }
+
+      if (acao == tirar_like) {
+        var dados = {
+            'acao': 2,
+            'id_ep': id_ep,
+        };
+      }
+
+      $.ajax({
+        url: "/curtida",
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'POST',
+        data: dados,
+        dataType: 'json',
+        success: function(data) {
+          if (acao == tirar_like) {
+            $(".div-alert").remove()
+            var frase = 'Removido em curtidas';
+            $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
+            //remove alert
+            setTimeout(function() {
+              $('.div-alert').remove();
+            }, 4000);
+          }
+
+          if (acao == dar_like) {
+            $(".div-alert").remove()
+            var frase = 'Adicionado em curtidas';
+            $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
+            //remove alert
+            setTimeout(function() {
+              $('.div-alert').remove();
+            }, 4000);
+          }
         }
-
-        if (acao == tirar_like) {
-            var dados = {
-                'acao': 2,
-                'id_ep': id_ep,
-            };
-        }
-
-        $.ajax({
-            url: "/curtida",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'POST',
-            data: dados,
-            dataType: 'json',
-            success: function(data) {
-                if (acao == tirar_like) {
-                    var frase = 'Removido em curtidas';
-                    $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
-                }
-
-                if (acao == dar_like) {
-                    var frase = 'Adicionado em curtidas';
-                    $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
-                }
-            }
-        });
+      });
     });
 
     //salvar status da curtida, tirar curtidaa
     $("i.bxs-heart").click(function() {
-        var id_ep = $(this).attr('id-ep')
-        var acao = $(this)[0];
+      var id_ep = $(this).attr('id-ep')
+      var acao = $(this)[0];
 
-        var dar_like = document.querySelector("i.bx-heart");
-        var tirar_like = document.querySelector("i.bxs-heart");
-        $(this).toggleClass("bxs-heart bx-heart");
+      var dar_like = document.querySelector("i.bx-heart");
+      var tirar_like = document.querySelector("i.bxs-heart");
+      $(this).toggleClass("bxs-heart bx-heart");
 
-        if (acao == dar_like) {
-            var dados = {
-                'acao': 1,
-                'id_ep': id_ep,
-            };
+      if (acao == dar_like) {
+        var dados = {
+            'acao': 1,
+            'id_ep': id_ep,
+        };
+      }
+
+      if (acao == tirar_like) {
+        var dados = {
+            'acao': 2,
+            'id_ep': id_ep,
+        };
+      }
+
+      $.ajax({
+        url: "/curtida",
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'POST',
+        data: dados,
+        dataType: 'json',
+        success: function(data) {
+          if (acao == tirar_like) {
+            $(".div-alert").remove()
+            var frase = 'Removido em curtidas';
+            $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
+            //remove alert
+            setTimeout(function() {
+              $('.div-alert').remove();
+            }, 4000);
+          }
+
+          if (acao == dar_like) {
+            $(".div-alert").remove()
+            var frase = 'Adicionado em curtidas';
+            $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
+            //remove alert
+            setTimeout(function() {
+              $('.div-alert').remove();
+            }, 4000);
+          }
         }
-
-        if (acao == tirar_like) {
-            var dados = {
-                'acao': 2,
-                'id_ep': id_ep,
-            };
-        }
-
-        $.ajax({
-            url: "/curtida",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'POST',
-            data: dados,
-            dataType: 'json',
-            success: function(data) {
-                if (acao == tirar_like) {
-                    var frase = 'Removido em curtidas';
-                    $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
-                }
-
-                if (acao == dar_like) {
-                    var frase = 'Adicionado em curtidas';
-                    $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
-                }
-            }
-        });
+      });
     });
 
     //excluit ep quando o ep for seu
     $("i.bx-trash-alt").click(function() {
-        var id_ep = $(this).attr('id-ep');
+      var id_ep = $(this).attr('id-ep');
 
-        var dados = {
-            'id_ep': id_ep,
-        };
-        $.ajax({
-            url: "/delete_ep",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'POST',
-            data: dados,
-            dataType: 'json',
-            success: function(data) {
-                $(".div-alert").remove();
-                var frase = 'Episódio removido';
-                $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
-                $('#' + id_ep).hide();
-            }
-        });
+      var dados = {
+        'id_ep': id_ep,
+      };
+      $.ajax({
+        url: "/delete_ep",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'POST',
+        data: dados,
+        dataType: 'json',
+        success: function(data) {
+          $(".div-alert").remove();
+          var frase = 'Episódio removido';
+          $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
+          $('#' + id_ep).hide();
+
+          //remove alert
+          setTimeout(function() {
+            $('.div-alert').remove();
+          }, 4000);
+        }
+      });
     });
 
     //passando dados para modal edit

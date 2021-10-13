@@ -41,6 +41,11 @@
   td:hover, tr:hover,h1:hover, p:hover{
     cursor: default;
   }
+
+  .gif_som{
+    height:20px;
+    display: none;
+  }
 </style>
 
 <div class="height-100">
@@ -77,8 +82,9 @@
                 <i class='bx bx-pause' id="pause{{$key}}" style="display: none;"></i>
                 <audio controls id="demo{{$key}}" src="http://127.0.0.1:8000/storage/audio_ep/{{$ep->name_audio}}" style="display: none;"></audio>
               </th>
-              <td style="color: #eee;">{{$ep->name_ep}}</td>
+              <td style="color: #eee;" id="nome_ep{{$key}}">{{$ep->name_ep}}</td>
               <td id="{{$ep->id}}"> 
+                <img src="{{ asset('sound.gif') }}" class="gif_som" id="gif_som{{$key}}" alt="sound"/>
                 @if (Auth::user()->id == $ep->id_user)
                   <i class='bx bx-trash-alt' id-ep="{{$ep->id}}"></i>
                 @endif
@@ -137,6 +143,8 @@ $("[id^=play]").click(function(event) {
   document.getElementById('demo'+id).play();
   $(this).hide();
   $('#pause'+id).show();
+  $('#gif_som'+id).show();
+  $('#nome_ep'+id).css('color', '#4723D9');
 });
 
 //pause o audio que esta tocando para que o outro possar dar o play e tocar sozinho, reinicia o time do algo anterior
@@ -162,6 +170,8 @@ $("[id^=pause]").click(function() {
   document.getElementById('demo'+id).pause();
   $(this).hide();
   $('#play'+id).show();
+  $('#gif_som'+id).hide();
+  $('#nome_ep'+id).css('color', '#eee');
 });
 
 //salvar status da curtida, curtir

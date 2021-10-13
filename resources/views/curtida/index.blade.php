@@ -21,7 +21,7 @@
   }
 
   .destaque{
-    background:#262626;
+    background:#222121;
   }
 
   .add_playlist:hover{

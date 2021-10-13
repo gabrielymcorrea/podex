@@ -44,7 +44,7 @@
     }
 
     .destaque {
-      background: #262626;
+      background: #222121;
     }
 
     td:hover,
@@ -54,9 +54,9 @@
         cursor: default;
     }
 
-    img {
-        height: 250px !important;
-        object-fit: cover;
+    .img-fluid {
+      height: 250px ;
+      object-fit: cover;
     }
 
     .modal-content {
@@ -125,7 +125,7 @@
   }
 
   .destaque{
-    background:#342C2C;
+    background:#222121;
   }
 
   td:hover, tr:hover,h1:hover, p:hover{
@@ -133,20 +133,22 @@
   }
 
   .gif_som{
-    height:20px;
+    height:15px;
     display: none;
+    margin-bottom: 8px;
   }
-    .footer-play{
-      width: 100%;
-      height: 100px;
-      background: #000;
-      color: #fff;
-      padding: 0px;
-      margin: 0px;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-    }
+
+  .footer-play{
+    width: 100%;
+    height: 100px;
+    background: #000;
+    color: #fff;
+    padding: 0px;
+    margin: 0px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
 </style>
 
 
@@ -160,7 +162,7 @@
     <div class="add-alert"></div>
 
     <div class="row">
-      <div style="height:280px; width:280px;">
+      <div style="height:250px; width:280px;">
         @if ($data[0]->profile_photo_path)
           <img src="{{ asset('storage/' . $data[0]->profile_photo_path) }}" alt="{{ $data[0]->name_podcast }}" class="img-fluid" />
         @else
@@ -196,6 +198,7 @@
               <td style="color: #eee;">{{ $ep->name_ep }}</td>
               
               <td style="width: 200px">
+                <img src="{{ asset('sound.gif') }}" alt="gif som" class="gif_som" id="gif_som{{$key}}"/>
                 @if (Auth::user()->id == $ep->id_user)
                   <i class='bx bx-trash-alt' id-ep="{{ $ep->id }}" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletar"></i>
                 @endif
@@ -264,14 +267,14 @@
       </div>
     </div> 
 
-    <div class="footer-play">
+    {{-- <div class="footer-play">
       <div style="display: flex; justify-content: center;"> 
         <div class="row" style="display: flex; flex-wrap: nowrap; flex-direction: row;justify-content: center;"> 
           <i class='bx bx-arrow-to-left'></i> <i class='bx bxs-caret-right-square'></i> <i class='bx bx-arrow-to-right' ></i> 
         </div>
         <div class="row"></div>
       </div>
-    </div>
+    </div> --}}
 </div>
 
 <script>
@@ -305,6 +308,7 @@
         document.getElementById('demo' + id).play();
         $(this).hide();
         $('#pause' + id).show();
+        $('#gif_som' +id).show();
     });
 
     //pause o audio que esta tocando para que o outro possar dar o play e tocar sozinho, reinicia o time do algo anterior
@@ -317,6 +321,7 @@
 
                 $('#pause' + id).hide();
                 $('#play' + id).show();
+                $('#gif_som' +id).hide();
 
                 audios[i].pause();
                 audios[i].currentTime = 0
@@ -330,6 +335,7 @@
         document.getElementById('demo' + id).pause();
         $(this).hide();
         $('#play' + id).show();
+        $('#gif_som' +id).hide();
     });
 
     //salvar status da curtida, curtir

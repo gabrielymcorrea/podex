@@ -41,6 +41,12 @@
     width: 25px;
     bottom: 100px;
   }
+
+  .gif_som{
+    height:15px;
+    opacity: 0;
+    margin-bottom: 8px;
+  }
 </style>
 
 <div class="height-100">
@@ -76,6 +82,7 @@
                 </th>
                 <td style="color: #eee;">{{$ep->name_ep}}</td>
                 <td> 
+                  <img src="{{ asset('sound.gif') }}" alt="gif som" class="gif_som" id="gif_som{{$key}}"/>
                   <i class='bx bx-trash-alt' id-ep="{{$ep->id}}" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletar"></i>
                   <a class="nav-link dropdown logado" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class='bx bx-add-to-queue' data-bs-toggle="tooltip" data-bs-placement="right" title="Adicionar playlist"></i>       
@@ -123,6 +130,7 @@
     document.getElementById('demo'+id).play();
     $(this).hide();
     $('#pause'+id).show();
+    $('#gif_som' +id).css('opacity',1);
   });
 
   //pause o audio que esta tocando para que o outro possar dar o play e tomar sozinho, reinicia o time do algo anterior
@@ -135,6 +143,7 @@
 
         $('#pause'+id).hide();
         $('#play'+id).show();
+        $('#gif_som' +id).css('opacity',0);
 
         audios[i].pause();
         audios[i].currentTime = 0
@@ -148,6 +157,8 @@
     document.getElementById('demo'+id).pause();
     $(this).hide();
     $('#play'+id).show();
+
+    $('#gif_som' +id).css('opacity',0);
   });
 
   //add na playlist

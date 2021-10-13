@@ -93,6 +93,12 @@
     -webkit-text-fill-color: #8f8d8d ;
     -webkit-box-shadow: 0 0 0px 1000px #222222 inset;
   }
+
+  .gif_som{
+    height:15px;
+    opacity: 0;
+    margin-bottom: 8px;
+  }
 </style>
 
 <div class="height-100">
@@ -150,6 +156,7 @@
               </td>
               <td style="color: #eee;">{{$ep->name_ep}}</td>
               <td style="width: 200px"> 
+                <img src="{{ asset('sound.gif') }}" alt="gif som" class="gif_som" id="gif_som{{$key}}"/>
                 <i class='bx bx-trash-alt' id-ep="{{$ep->id}}" id-playlist="{{$id_playlist}}" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletar"></i>
                 {{$ep->temp_audio}}
               </td>
@@ -174,7 +181,6 @@
       },
       function(){
         $(this).removeClass('destaque');
-
       }
     );
   });
@@ -186,6 +192,7 @@
     document.getElementById('demo'+id).play();
     $(this).hide();
     $('#pause'+id).show();
+    $('#gif_som' +id).css('opacity',1);
   });
 
   //pause o audio que esta tocando para que o outro possar dar o play e tomar sozinho, reinicia o time do algo anterior
@@ -198,6 +205,7 @@
 
         $('#pause'+id).hide();
         $('#play'+id).show();
+        $('#gif_som' +id).css('opacity',0);
 
         audios[i].pause();
         audios[i].currentTime = 0
@@ -211,6 +219,7 @@
     document.getElementById('demo'+id).pause();
     $(this).hide();
     $('#play'+id).show();
+    $('#gif_som' +id).css('opacity',0);
   });
 
   //remove ep da playlist

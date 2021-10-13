@@ -134,7 +134,7 @@
 
   .gif_som{
     height:15px;
-    display: none;
+    opacity: 0;
     margin-bottom: 8px;
   }
 
@@ -308,7 +308,7 @@
         document.getElementById('demo' + id).play();
         $(this).hide();
         $('#pause' + id).show();
-        $('#gif_som' +id).show();
+        $('#gif_som' +id).css('opacity',1);
     });
 
     //pause o audio que esta tocando para que o outro possar dar o play e tocar sozinho, reinicia o time do algo anterior
@@ -321,7 +321,7 @@
 
                 $('#pause' + id).hide();
                 $('#play' + id).show();
-                $('#gif_som' +id).hide();
+                $('#gif_som' +id).css('opacity',0);
 
                 audios[i].pause();
                 audios[i].currentTime = 0
@@ -335,7 +335,7 @@
         document.getElementById('demo' + id).pause();
         $(this).hide();
         $('#play' + id).show();
-        $('#gif_som' +id).hide();
+        $('#gif_som' +id).css('opacity',0);
     });
 
     //salvar status da curtida, curtir

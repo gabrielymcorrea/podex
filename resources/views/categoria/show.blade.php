@@ -92,6 +92,50 @@
       -webkit-box-shadow: 0 0 0px 1000px #222222 inset;
     }
 
+  .podcast_por{
+    color:#eee ;
+    font-size:1.3rem;
+  }
+
+  .podcast_por:hover {
+    color:#4723D9;
+    text-decoration:underline !important;
+  }
+
+  .id-ep:hover, .add_playlist:hover{
+    cursor: pointer;
+  }
+
+  .bx-heart:hover, .bx-add-to-queue:hover, .bxs-heart:hover, .bx-pause:hover, .bx-play:hover, .bx-trash-alt:hover{
+    color:#eee;
+    cursor: pointer;
+  }
+  
+  td, th, tr {
+    border: none;
+  }
+
+  .bx-add-to-queue{
+    color:#56545a;
+  }
+
+  .nav-link{
+    display: inline-block;
+    padding:0px ;
+  }
+
+  .destaque{
+    background:#342C2C;
+  }
+
+  td:hover, tr:hover,h1:hover, p:hover{
+    cursor: default;
+  }
+
+  .gif_som{
+    height:20px;
+    display: none;
+  }
     .footer-play{
       width: 100%;
       height: 100px;

@@ -239,13 +239,18 @@
 
             <div class="row" style="margin-top: 70px;">
                 <div class="col-6 sobre">
-                    <h4> Quem nós Somos? </h4>
-                    <p> Nós somos um pequeno grupo de universitários com uma grande ideia,
-                        fornecer a todos uma forma de entretenimento fácil, rápida, acessível e gratuita. Pensando nisso, nós criamos o Podex, a plataforma que tem a ideia de inovar a forma
-                        como os Podcasts serão vistos (e ouvidos) Vem com a gente e conhecer os mais váriados podcasts já existentes?
-                        <a href="{{route('dashboard')}}" class="link_login"> bora lá </a>
+                    <h4> Sobre Nós </h4>
                     <p> 
-                        
+                        Somos um pequeno grupo de universitários com uma grande ideia: 
+                        Fornecer a todos uma forma de entretenimento fácil, rápida, acessível e gratuita.
+                    </p>
+                    <p>    
+                        Pensando nisso criamos o Podex! Uma plataforma que tem a ideia de inovar a forma
+                        como os Podcasts serão vistos (e ouvidos).
+                    </p>
+                    <p> Venha conhecer os mais váriados podcasts já existentes!
+                        <a href="{{route('dashboard')}}" class="link_login"> bora lá! </a>
+                    </p>
                     <div>
                         <i class='bx bxl-facebook-square rede_social'></i>
                         <i class='bx bxl-instagram-alt rede_social'></i>

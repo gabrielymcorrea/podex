@@ -90,4 +90,8 @@ class PlaylistController extends Controller
         Playlist::where('id', $id_playlist )->where('id_user', Auth::id())->update(['nome' => $request['novo_nome']]);
         return redirect()->back();
     }
+
+    public function play(){
+        return view('play');
+    }
 }

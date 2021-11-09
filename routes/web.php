@@ -48,6 +48,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/show_playlist/{id}', [PlaylistController::class, 'show_playlist'])->name('show_playlist');
     Route::post('/renome_playlist', [PlaylistController::class, 'renome_playlist'])->name('renome_playlist');
     Route::post('/remove_ep_playlist', [PlaylistController::class, 'remove_ep']);
+
+
+    Route::get('/play', [PlaylistController::class, 'play']);
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

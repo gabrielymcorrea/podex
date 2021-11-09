@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('descricao')->nullable();
             $table->string('name_podcast')->nullable();
             $table->integer('id_categoria')->nullable();
+            $table->string('type_user')->nullable(); 
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

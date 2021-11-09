@@ -47,6 +47,11 @@
     opacity: 0;
     margin-bottom: 8px;
   }
+
+  #wrapper { 
+    margin: 150px auto; 
+    max-width: 100%; 
+  }
 </style>
 
 <div class="height-100">
@@ -75,7 +80,7 @@
           <tbody style="color: #56545a;">
             @foreach ($curtidas as $key => $ep)
               <tr id="{{$ep->id}}">
-                <th scope="row">
+                <th scope="row" class="icon-play-pause">
                   <i class="bx bx-play" id="play{{$key}}"></i> 
                   <i class='bx bx-pause' id="pause{{$key}}" style="display: none;"></i>
                   <audio controls id="demo{{$key}}" src="http://127.0.0.1:8000/storage/audio_ep/{{$ep->name_audio}}" style="display: none;"></audio>
@@ -102,8 +107,16 @@
           </tbody>
         </table>
     </div>
+
+    <div id="wrapper" style="display: none;">
+      <audio preload="auto" controls id="play-footer">
+        <source src="" id="oggSource">
+      </audio>
+    </div>
 </div>
 
+
+<script src="js/audioplayer.js"></script>
 <script>
   //remove alert
   setTimeout(function(){ 
@@ -123,18 +136,9 @@
     );
   });
 
-  //play audio
-  $("[id^=play]").click(function(event) {
-    const id = this.id.slice(4);
-    
-    document.getElementById('demo'+id).play();
-    $(this).hide();
-    $('#pause'+id).show();
-    $('#gif_som' +id).css('opacity',1);
-  });
-
+//Testar esse codigo abaixa, ou tentar pegar o nome da class ao audioplayer,js para mudar o icon...
   //pause o audio que esta tocando para que o outro possar dar o play e tomar sozinho, reinicia o time do algo anterior
-  document.addEventListener('play', function(e){
+  /*document.addEventListener('play', function(e){
     var audios = document.getElementsByTagName('audio');
     for(var i = 0, len = audios.length; i < len;i++){
       if(audios[i] != e.target){
@@ -145,18 +149,48 @@
         $('#play'+id).show();
         $('#gif_som' +id).css('opacity',0);
 
-        audios[i].pause();
-        audios[i].currentTime = 0
+        //audios[i].pause();
+        //audios[i].currentTime = 0
       }
     }
-  }, true);
+  }, true);*/
+
+  //play audio
+  $("[id^=play]").click(function(event) {
+    //$('.audioplayer').remove();
+    const id = this.id.slice(4);
+    
+    var teste = document.getElementById('demo'+id).src;
+  
+    var audio = document.getElementById('oggSource');
+    
+    audio.src = teste;
+    //audio.load();
+    $('#play-footer').audioPlayer();
+
+
+    //$(0element).css('display') == 'none'
+    //console.log($('#wrapper').css('display') == 'none')
+    if($('#wrapper').is(':hidden')){
+      $('#wrapper').show();
+    }
+
+    $(this).hide();
+    $('#pause'+id).show();
+    $('#pause'+id).addClass("aqui");
+    $('#gif_som' +id).css('opacity',1);
+    $('.audioplayer-playpause a').click();
+    
+  });
 
   //pause audio
   $("[id^=pause]").click(function() {
     const id = this.id.slice(5);
-    document.getElementById('demo'+id).pause();
+    //document.getElementById('demo'+id).pause();
     $(this).hide();
     $('#play'+id).show();
+
+    $('.audioplayer-playpause a').click();
 
     $('#gif_som' +id).css('opacity',0);
   });

@@ -10,6 +10,7 @@
 
     <link rel="icon" href="{{ asset('favicon.svg') }}" sizes="any" type="image/svg+xml">
 
+    <link rel="stylesheet" href="{{asset('css/audioplayer.css')}}" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;700&display=swap" rel="stylesheet">

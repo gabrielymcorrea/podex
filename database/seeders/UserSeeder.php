@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Podex',
             'email' => 'contato@podex.com',
+            'type_user' => 'master',
             'password' => Hash::make('podex123'),
         ]);
     }

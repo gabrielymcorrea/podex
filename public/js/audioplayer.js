@@ -171,18 +171,6 @@
 
             thePlayer.find('.' + cssClass.playPause).on('click', function() {
                 if (thePlayer.hasClass(cssClass.playing)) { //pause
-                    var audios = document.getElementsByClassName('aqui');
-                    for(var i = 0, len = audios.length; i < len;i++){
-                        var id = audios[i].id;
-                        console.log(audios[i])
-                        $('#pause'+id).hide();
-                        $('#play'+id).show();
-                        $('#gif_som' +id).css('opacity',0);
-
-                        $('#pause'+id).removeClass("aqui");
-
-                    }
-
                     $(this).attr('title', params.strPlay).find('a').html(params.strPlay);
                     thePlayer.removeClass(cssClass.playing);
                     isSupport ? theAudio.pause() : theAudio.Stop();

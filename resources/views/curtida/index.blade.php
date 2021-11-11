@@ -138,39 +138,55 @@
 
 //Testar esse codigo abaixa, ou tentar pegar o nome da class ao audioplayer,js para mudar o icon...
   //pause o audio que esta tocando para que o outro possar dar o play e tomar sozinho, reinicia o time do algo anterior
-  /*document.addEventListener('play', function(e){
+  document.addEventListener('play', function(e){
     var audios = document.getElementsByTagName('audio');
     for(var i = 0, len = audios.length; i < len;i++){
       if(audios[i] != e.target){
-        var id = audios[i].id
+        //console.log(audios[i]);
+        /*var id = audios[i].id
         var id = id.replace(/[^0-9]/g,'');
 
         $('#pause'+id).hide();
         $('#play'+id).show();
         $('#gif_som' +id).css('opacity',0);
 
-        //audios[i].pause();
-        //audios[i].currentTime = 0
+        audios[i].pause();
+        audios[i].currentTime = 0*/
       }
     }
-  }, true);*/
+  }, true);
 
   //play audio
   $("[id^=play]").click(function(event) {
-    //$('.audioplayer').remove();
     const id = this.id.slice(4);
     
-    var teste = document.getElementById('demo'+id).src;
-  
-    var audio = document.getElementById('oggSource');
+    var audioTocando = document.getElementById('oggSource').src;
+    var novoAudio = document.getElementById('demo'+id).src;
+   
+    console.log(novoAudio)
+    //console.log('tocando', audioTocando);
+    //console.log('novo', novoAudio);
+
+    if(audioTocando != novoAudio){
+      //$('.teste').empty();
+      var existe = document.getElementById("play-footer");
+      if(existe){
+        console.log(1)
+        $('#wrapper').empty();
+        $('#wrapper').append('<audio preload="auto" controls id="play-footer"> <source src="" id="oggSource"></audio>');
+      }
+
+      console.log(document.getElementById('oggSource'))
+
+      var audio = document.getElementById('oggSource');
+      audio.src = novoAudio;
+
+      $('#play-footer').audioPlayer();
+      //$('.teste').fadeIn();
+    }
+
     
-    audio.src = teste;
-    //audio.load();
-    $('#play-footer').audioPlayer();
 
-
-    //$(0element).css('display') == 'none'
-    //console.log($('#wrapper').css('display') == 'none')
     if($('#wrapper').is(':hidden')){
       $('#wrapper').show();
     }

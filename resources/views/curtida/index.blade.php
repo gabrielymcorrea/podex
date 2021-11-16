@@ -83,7 +83,7 @@
                 <th scope="row" class="icon-play-pause">
                   <i class="bx bx-play" id="play{{$key}}"></i> 
                   <i class='bx bx-pause' id="pause{{$key}}" style="display: none;"></i>
-                  <audio controls id="demo{{$key}}" src="http://127.0.0.1:8000/storage/audio_ep/{{$ep->name_audio}}" style="display: none;"></audio>
+                  <audio controls id="demo{{$key}}" class="percorrer_id" src="http://127.0.0.1:8000/storage/audio_ep/{{$ep->name_audio}}" style="display: none;"></audio>
                 </th>
                 <td style="color: #eee;">{{$ep->name_ep}}</td>
                 <td> 
@@ -149,19 +149,15 @@
       $('[id^=play]').show();
       $('[id^=gif_som]').css('opacity',0);
 
-      var existe = document.getElementById("play-footer");
-      if(existe){
-        $('#wrapper').empty();
-        $('#wrapper').append('<audio preload="auto" controls id="play-footer"> <source src="" id="oggSource"></audio>');
-      }
-
+      $('#wrapper').empty();
+      $('#wrapper').append('<audio preload="auto" controls id="play-footer"> <source src="" id="oggSource"></audio>');
+     
       var audio = document.getElementById('oggSource');
       audio.src = novoAudio;
 
       $('#play-footer').audioPlayer();
     }
 
-    
 
     if($('#wrapper').is(':hidden')){
       $('#wrapper').show();

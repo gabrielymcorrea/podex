@@ -267,16 +267,14 @@
       </div>
     </div> 
 
-    {{-- <div class="footer-play">
-      <div style="display: flex; justify-content: center;"> 
-        <div class="row" style="display: flex; flex-wrap: nowrap; flex-direction: row;justify-content: center;"> 
-          <i class='bx bx-arrow-to-left'></i> <i class='bx bxs-caret-right-square'></i> <i class='bx bx-arrow-to-right' ></i> 
-        </div>
-        <div class="row"></div>
-      </div>
-    </div> --}}
+    <div id="wrapper" style="display: none;">
+      <audio preload="auto" controls id="play-footer">
+        <source src="" id="oggSource">
+      </audio>
+    </div>
 </div>
 
+<script src="js/audioplayer.js"></script>
 <script>
     //remove alert
     setTimeout(function() {
@@ -303,39 +301,48 @@
 
     //play audio
     $("[id^=play]").click(function(event) {
-        const id = this.id.slice(4);
+      const id = this.id.slice(4);
+      
+      var audioTocando = document.getElementById('oggSource').src;
+      var novoAudio = document.getElementById('demo'+id).src;
+    
+    
+      if(audioTocando != novoAudio){
+        $('[id^=pause]').hide();
+        $('[id^=play]').show();
+        $('[id^=gif_som]').css('opacity',0);
 
-        document.getElementById('demo' + id).play();
-        $(this).hide();
-        $('#pause' + id).show();
-        $('#gif_som' +id).css('opacity',1);
+        $('#wrapper').empty();
+        $('#wrapper').append('<audio preload="auto" controls id="play-footer"> <source src="" id="oggSource"></audio>');
+      
+        var audio = document.getElementById('oggSource');
+        audio.src = novoAudio;
+
+        $('#play-footer').audioPlayer();
+      }
+
+
+      if($('#wrapper').is(':hidden')){
+        $('#wrapper').show();
+      }
+
+      $(this).hide();
+      $('#pause'+id).show();
+      $('#pause'+id).addClass("aqui");
+      $('#gif_som' +id).css('opacity',1);
+      $('.audioplayer-playpause a').click();
+      
     });
-
-    //pause o audio que esta tocando para que o outro possar dar o play e tocar sozinho, reinicia o time do algo anterior
-    document.addEventListener('play', function(e) {
-        var audios = document.getElementsByTagName('audio');
-        for (var i = 0, len = audios.length; i < len; i++) {
-            if (audios[i] != e.target) {
-                var id = audios[i].id
-                var id = id.replace(/[^0-9]/g, '');
-
-                $('#pause' + id).hide();
-                $('#play' + id).show();
-                $('#gif_som' +id).css('opacity',0);
-
-                audios[i].pause();
-                audios[i].currentTime = 0
-            }
-        }
-    }, true);
 
     //pause audio
     $("[id^=pause]").click(function() {
-        const id = this.id.slice(5);
-        document.getElementById('demo' + id).pause();
-        $(this).hide();
-        $('#play' + id).show();
-        $('#gif_som' +id).css('opacity',0);
+      const id = this.id.slice(5);
+      $(this).hide();
+      $('#play'+id).show();
+
+      $('.audioplayer-playpause a').click();
+      $('#pause'+id).removeClass("aqui");
+      $('#gif_som' +id).css('opacity',0);
     });
 
     //salvar status da curtida, curtir

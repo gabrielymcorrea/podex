@@ -116,7 +116,7 @@
 </div>
 
 
-<script src="js/audioplayer.js"></script>
+<script src="{{ asset('js/audioplayer.js') }}"></script>
 <script>
   //remove alert
   setTimeout(function(){ 
@@ -154,6 +154,8 @@
      
       var audio = document.getElementById('oggSource');
       audio.src = novoAudio;
+
+      console.log(audio);
 
       $('#play-footer').audioPlayer();
     }

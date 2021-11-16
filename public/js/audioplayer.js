@@ -201,7 +201,7 @@
 
                         }
                     });
-                    
+
                     $(this).attr('title', params.strPause).find('a').html(params.strPause);
                     thePlayer.addClass(cssClass.playing);
                     isSupport ? theAudio.play() : theAudio.Play();

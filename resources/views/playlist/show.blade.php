@@ -174,7 +174,7 @@
 </div>
 
 
-<script src="js/audioplayer.js"></script>
+<script src="{{ asset('js/audioplayer.js') }}"></script>
 <script>
   //remove alert
   setTimeout(function(){ 

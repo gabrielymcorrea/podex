@@ -149,6 +149,11 @@
     bottom: 0;
     left: 0;
   }
+
+  #wrapper { 
+    margin: 150px auto; 
+    max-width: 100%; 
+  }
 </style>
 
 
@@ -243,7 +248,7 @@
       </table>
     </div>
 
-    <div class="row">
+    <div class="row" style="padding-bottom: 100px;">
       <!-- Modal edit -->
       <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -488,5 +493,36 @@
     $('.bx-edit-alt').on('click', function(){
       var id_ep = $(this).attr('id-ep');
       $("#id_ep").val(id_ep);
+    });
+
+    //add na playlist
+    $("a.add_playlist").click(function() {
+      var id_playlist = $(this).attr('id-playlist');
+      var id_ep = $(this).attr('id-ep');
+
+      var dados = {
+        'id_playlist': id_playlist,
+        'id_ep': id_ep,
+      };
+
+      $.ajax({
+        url: "/add_playlist",
+        headers:{
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'POST',
+        data: dados,
+        dataType: 'json',
+        success: function(data) {
+          $(".div-alert").remove();
+          var frase = 'Adicionado na playlist';
+          $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
+
+          //remove alert
+          setTimeout(function() {
+            $('.div-alert').remove();
+          }, 4000);
+        }
+      });
     });
 </script>

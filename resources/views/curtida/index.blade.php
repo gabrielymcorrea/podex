@@ -68,7 +68,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="padding-bottom: 100px;">
         <table class="table" id="curtida">
           <thead style="border-bottom: 1px solid #342C2C;">
             <tr style="color: #56545a;">

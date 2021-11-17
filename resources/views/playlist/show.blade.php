@@ -99,6 +99,11 @@
     opacity: 0;
     margin-bottom: 8px;
   }
+
+   #wrapper { 
+    margin: 150px auto; 
+    max-width: 100%; 
+  }
 </style>
 
 <div class="height-100">
@@ -137,7 +142,7 @@
       </div>
   </div>
 
-  <div class="row">
+  <div class="row" style="padding-bottom: 100px;">
     <table class="table" id="ep">
       <thead style="border-bottom: 1px solid #342C2C;">
         <tr style="color: #56545a;">

@@ -130,6 +130,10 @@
                 });
 
                 theAudio.addEventListener('ended', function() {
+                    $('[id^=play]').show();
+                    $('[id^=pause]').hide();
+                    $('[id^=gif_som]').css('opacity',0);
+
                     thePlayer.removeClass(cssClass.playing);
                 });
 
@@ -166,7 +170,10 @@
                     });
             } else thePlayer.addClass(cssClass.mini);
 
-            if (isAutoPlay) thePlayer.addClass(cssClass.playing);
+            if (isAutoPlay) {
+                thePlayer.addClass(cssClass.playing);
+                
+            }
 
 
             thePlayer.find('.' + cssClass.playPause).on('click', function() {

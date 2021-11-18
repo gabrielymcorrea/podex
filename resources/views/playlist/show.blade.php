@@ -172,14 +172,13 @@
   </div>
 
   <div id="wrapper" style="display: none;">
-    <audio preload="auto" controls id="play-footer">
+    <audio controls preload="none" id="play-footer">
       <source src="" id="oggSource">
     </audio>
   </div>
 </div>
 
 
-<script src="{{ asset('js/audioplayer.js') }}"></script>
 <script>
   //remove alert
   setTimeout(function(){ 

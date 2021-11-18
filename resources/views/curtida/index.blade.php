@@ -109,14 +109,12 @@
     </div>
 
     <div id="wrapper" style="display: none;">
-      <audio preload="auto" controls id="play-footer">
+      <audio controls preload="none" id="play-footer">
         <source src="" id="oggSource">
       </audio>
     </div>
 </div>
 
-
-<script src="{{ asset('js/audioplayer.js') }}"></script>
 <script>
   //remove alert
   setTimeout(function(){ 
@@ -143,24 +141,21 @@
     var audioTocando = document.getElementById('oggSource').src;
     var novoAudio = document.getElementById('demo'+id).src;
    
-   
     if(audioTocando != novoAudio){
+      console.log('ola');
       $('[id^=pause]').hide();
       $('[id^=play]').show();
       $('[id^=gif_som]').css('opacity',0);
 
       $('#wrapper').empty();
-      $('#wrapper').append('<audio preload="auto" controls id="play-footer"> <source src="" id="oggSource"></audio>');
+      $('#wrapper').append('<audio controls preload="none" id="play-footer"> <source src="" id="oggSource"></audio>');
      
       var audio = document.getElementById('oggSource');
       audio.src = novoAudio;
 
-      console.log(audio);
-
       $('#play-footer').audioPlayer();
     }
-
-
+    
     if($('#wrapper').is(':hidden')){
       $('#wrapper').show();
     }

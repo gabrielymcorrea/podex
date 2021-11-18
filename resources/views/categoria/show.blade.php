@@ -273,13 +273,12 @@
     </div> 
 
     <div id="wrapper" style="display: none;">
-      <audio preload="auto" controls id="play-footer">
+      <audio controls preload="none" id="play-footer">
         <source src="" id="oggSource">
       </audio>
     </div>
 </div>
 
-<script src="{{ asset('js/audioplayer.js') }}"></script>
 <script>
     //remove alert
     setTimeout(function() {
@@ -318,10 +317,12 @@
         $('[id^=gif_som]').css('opacity',0);
 
         $('#wrapper').empty();
-        $('#wrapper').append('<audio preload="auto" controls id="play-footer"> <source src="" id="oggSource"></audio>');
+        $('#wrapper').append('<audio controls preload="none" id="play-footer"> <source src="" id="oggSource"></audio>');
       
         var audio = document.getElementById('oggSource');
         audio.src = novoAudio;
+
+
 
         $('#play-footer').audioPlayer();
       }

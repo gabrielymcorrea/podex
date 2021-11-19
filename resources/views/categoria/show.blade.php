@@ -279,7 +279,6 @@
     </div>
 </div>
 
-<script src="{{ asset('js/audioplayer.js') }}"></script>
 <script>
     //remove alert
     setTimeout(function() {

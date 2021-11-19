@@ -115,8 +115,6 @@
     </div>
 </div>
 
-
-<script src="{{ asset('js/audioplayer.js') }}"></script>
 <script>
   //remove alert
   setTimeout(function(){ 
@@ -143,8 +141,8 @@
     var audioTocando = document.getElementById('oggSource').src;
     var novoAudio = document.getElementById('demo'+id).src;
    
-   
     if(audioTocando != novoAudio){
+      console.log('ola');
       $('[id^=pause]').hide();
       $('[id^=play]').show();
       $('[id^=gif_som]').css('opacity',0);
@@ -160,8 +158,6 @@
       $('#play-footer').trigger('load')
       $('#play-footer').audioPlayer();
     }
-
-
     if($('#wrapper').is(':hidden')){
       $('#wrapper').show();
     }

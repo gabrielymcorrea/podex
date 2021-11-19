@@ -172,12 +172,15 @@
 
             if (isAutoPlay) {
                 thePlayer.addClass(cssClass.playing);
-                
             }
 
 
             thePlayer.find('.' + cssClass.playPause).on('click', function() {
                 if (thePlayer.hasClass(cssClass.playing)) { //pause
+                    $(this).attr('title', params.strPlay).find('a').html(params.strPlay);
+                    thePlayer.removeClass(cssClass.playing);
+                    isSupport ? theAudio.pause() : theAudio.Stop();
+
         
                     var tocando = document.getElementById('oggSource').src
                     $('.percorrer_id').each(function(i, obj) {
@@ -189,12 +192,12 @@
                             $('#pause'+id).hide();
                             $('#gif_som'+id).css('opacity',0);
                         }
-                    });
-        
-                    $(this).attr('title', params.strPlay).find('a').html(params.strPlay);
-                    thePlayer.removeClass(cssClass.playing);
-                    isSupport ? theAudio.pause() : theAudio.Stop();
+                    });            
                 } else {
+                    $(this).attr('title', params.strPause).find('a').html(params.strPause);
+                    thePlayer.addClass(cssClass.playing);
+                    isSupport ? theAudio.play() : theAudio.Play();
+
                     var tocando = document.getElementById('oggSource').src
                     $('.percorrer_id').each(function(i, obj) {
                         if($(this).attr('src') == tocando){
@@ -206,10 +209,6 @@
                             $('#gif_som'+id).css('opacity',1);
                         }
                     });
-
-                    $(this).attr('title', params.strPause).find('a').html(params.strPause);
-                    thePlayer.addClass(cssClass.playing);
-                    isSupport ? theAudio.play() : theAudio.Play();
                 }
                 return false;
             });

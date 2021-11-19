@@ -188,7 +188,6 @@
                             $('#play'+id).show();
                             $('#pause'+id).hide();
                             $('#gif_som'+id).css('opacity',0);
-
                         }
                     });
         
@@ -205,7 +204,6 @@
                             $('#play'+id).hide();
                             $('#pause'+id).show();
                             $('#gif_som'+id).css('opacity',1);
-
                         }
                     });
 

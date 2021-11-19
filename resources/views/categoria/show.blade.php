@@ -197,7 +197,7 @@
               <td scope="row" style="width: 40px">
                 <i class="bx bx-play" id="play{{ $key }}"></i>
                 <i class='bx bx-pause' id="pause{{ $key }}" style="display: none;"></i>
-                <audio controls id="demo{{ $key }}" src="http://127.0.0.1:8000/storage/audio_ep/{{ $ep->name_audio }}" style="display: none;"></audio>
+                <audio controls class="percorrer_id" id="demo{{ $key }}" src="http://127.0.0.1:8000/storage/audio_ep/{{ $ep->name_audio }}" style="display: none;"></audio>
               </td>
               
               <td style="color: #eee;">{{ $ep->name_ep }}</td>
@@ -273,7 +273,7 @@
     </div> 
 
     <div id="wrapper" style="display: none;">
-      <audio preload="auto" controls id="play-footer">
+      <audio preload="none" controls id="play-footer">
         <source src="" id="oggSource">
       </audio>
     </div>
@@ -318,11 +318,12 @@
         $('[id^=gif_som]').css('opacity',0);
 
         $('#wrapper').empty();
-        $('#wrapper').append('<audio preload="auto" controls id="play-footer"> <source src="" id="oggSource"></audio>');
+        $('#wrapper').append('<audio preload="none" controls id="play-footer"> <source src="" id="oggSource"></audio>');
       
         var audio = document.getElementById('oggSource');
         audio.src = novoAudio;
 
+        $('#play-footer').trigger('load')
         $('#play-footer').audioPlayer();
       }
 

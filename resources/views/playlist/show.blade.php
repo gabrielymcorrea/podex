@@ -172,7 +172,7 @@
   </div>
 
   <div id="wrapper" style="display: none;">
-    <audio controls preload="none" id="play-footer">
+    <audio preload="none" controls id="play-footer">
       <source src="" id="oggSource">
     </audio>
   </div>

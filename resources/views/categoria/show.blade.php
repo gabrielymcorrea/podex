@@ -273,7 +273,7 @@
     </div> 
 
     <div id="wrapper" style="display: none;">
-      <audio controls preload="none" id="play-footer">
+      <audio preload="none" controls id="play-footer">
         <source src="" id="oggSource">
       </audio>
     </div>
@@ -319,7 +319,7 @@
         $('[id^=gif_som]').css('opacity',0);
 
         $('#wrapper').empty();
-        $('#wrapper').append('<audio controls preload="none" id="play-footer"> <source src="" id="oggSource"></audio>');
+        $('#wrapper').append('<audio preload="none" controls id="play-footer"> <source src="" id="oggSource"></audio>');
       
         var audio = document.getElementById('oggSource');
         audio.src = novoAudio;

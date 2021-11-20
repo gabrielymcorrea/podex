@@ -116,14 +116,16 @@
         <form method="post" action="{{ route('canal') }}" enctype="multipart/form-data">
             @csrf
             <div class="row">  
-                <div style="height:280px; width:300px;">
+                <div style="height:300px; width:300px;">
                     @if ($user[0]->profile_photo_path)
                         <img src="{{ asset('storage/' . $user[0]->profile_photo_path) }}" alt="{{ $user[0]->name_podcast }}" class="img-fluid" id="mostraFoto" />
                     @else
                         <img src="{{ asset('semimage.png') }}" alt="podex" class="img-fluid" id="mostraFoto"/>
                     @endif
+                    <p class="frase_salvarImg" style="display: none; font-weight:bold;color: #4723d9;">Clique em SALVAR *</p>
                 </div>
-                <div class="col-md-6">
+                
+                <div class="col-md-6 mt-3">
                     <div class="upload-btn-wrapper">
                         <button class="btn-file"><i class='bx bx-upload' ></i></button>
                         <input type="file" name="capa_canal" onchange="loadFile(event)" accept="image/*"/>
@@ -207,6 +209,8 @@
         reader.onload = function() {
             var output = document.getElementById('mostraFoto');
             output.src = reader.result;
+
+            $('.frase_salvarImg').show();
         };
         reader.readAsDataURL(event.target.files[0]);
     };

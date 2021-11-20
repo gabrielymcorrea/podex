@@ -197,15 +197,14 @@
               <td scope="row" style="width: 40px">
                 <i class="bx bx-play" id="play{{ $key }}"></i>
                 <i class='bx bx-pause' id="pause{{ $key }}" style="display: none;"></i>
-                <audio controls id="demo{{ $key }}" src="http://127.0.0.1:8000/storage/audio_ep/{{ $ep->name_audio }}" style="display: none;"></audio>
+                <audio class="percorrer_id" id="demo{{ $key }}" src="http://127.0.0.1:8000/storage/audio_ep/{{ $ep->name_audio }}" style="display: none;"></audio>
               </td>
               
               <td style="color: #eee;">{{ $ep->name_ep }}</td>
               
               <td style="width: 200px">
-                <img src="{{ asset('sound.gif') }}" alt="gif som" class="gif_som" id="gif_som{{$key}}"/>
                 @if (Auth::user()->id == $ep->id_user)
-                  <i class='bx bx-trash-alt' id-ep="{{ $ep->id }}" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletar"></i>
+                  <i class='bx bx-trash-alt' id="deletar{{$key}}" id-ep="{{ $ep->id }}" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletar"></i>
                 @endif
 
                 @if (Auth::user()->id == $ep->id_user)
@@ -241,6 +240,7 @@
                 @endif
 
                 <span>{{ $ep->temp_audio }}</span>
+                <img src="{{ asset('sound.gif') }}" alt="gif som" class="gif_som" id="gif_som{{$key}}"/>
               </td>
             </tr>
           @endforeach
@@ -310,6 +310,8 @@
       var audioTocando = document.getElementById('oggSource').src;
       var novoAudio = document.getElementById('demo'+id).src;
     
+      $('[id^=deletar]').css('opacity',1);
+      $('#deletar'+id).css('opacity',0);
     
       if(audioTocando != novoAudio){
         $('[id^=pause]').hide();
@@ -323,7 +325,7 @@
         audio.src = novoAudio;
 
 
-
+        $('#play-footer').trigger('load');
         $('#play-footer').audioPlayer();
       }
 
@@ -354,20 +356,18 @@
     //salvar status da curtida, curtir
     $("i.bx-heart").click(function() {
       var id_ep = $(this).attr('id-ep')
-      var acao = $(this)[0];
+      var acao = $(this).attr('class');
 
-      var dar_like = document.querySelector("i.bx-heart");
-      var tirar_like = document.querySelector("i.bxs-heart");
       $(this).toggleClass("bxs-heart bx-heart");
 
-      if (acao == dar_like) {
+      if (acao == 'bx bx-heart') {
         var dados = {
             'acao': 1,
             'id_ep': id_ep,
         };
       }
 
-      if (acao == tirar_like) {
+      if (acao == 'bx bxs-heart') {
         var dados = {
             'acao': 2,
             'id_ep': id_ep,
@@ -383,7 +383,7 @@
         data: dados,
         dataType: 'json',
         success: function(data) {
-          if (acao == tirar_like) {
+          if (acao == 'bx bxs-heart') {
             $(".div-alert").remove()
             var frase = 'Removido em curtidas';
             $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
@@ -393,7 +393,7 @@
             }, 4000);
           }
 
-          if (acao == dar_like) {
+          if (acao == 'bx bx-heart') {
             $(".div-alert").remove()
             var frase = 'Adicionado em curtidas';
             $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
@@ -409,20 +409,18 @@
     //salvar status da curtida, tirar curtidaa
     $("i.bxs-heart").click(function() {
       var id_ep = $(this).attr('id-ep')
-      var acao = $(this)[0];
+      var acao = $(this).attr('class');
 
-      var dar_like = document.querySelector("i.bx-heart");
-      var tirar_like = document.querySelector("i.bxs-heart");
       $(this).toggleClass("bxs-heart bx-heart");
 
-      if (acao == dar_like) {
+      if (acao == 'bx bx-heart') {
         var dados = {
             'acao': 1,
             'id_ep': id_ep,
         };
       }
 
-      if (acao == tirar_like) {
+      if (acao == 'bx bxs-heart') {
         var dados = {
             'acao': 2,
             'id_ep': id_ep,
@@ -438,7 +436,7 @@
         data: dados,
         dataType: 'json',
         success: function(data) {
-          if (acao == tirar_like) {
+          if (acao == 'bx bxs-heart') {
             $(".div-alert").remove()
             var frase = 'Removido em curtidas';
             $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);
@@ -448,7 +446,7 @@
             }, 4000);
           }
 
-          if (acao == dar_like) {
+          if (acao == 'bx bx-heart') {
             $(".div-alert").remove()
             var frase = 'Adicionado em curtidas';
             $(".add-alert").append(`<div class="div-alert"> <p> ${frase} </p> </div>`);

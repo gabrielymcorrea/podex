@@ -157,13 +157,13 @@
             <td scope="row" style="width: 40px">
               <i class="bx bx-play" id="play{{$key}}"></i> 
               <i class='bx bx-pause' id="pause{{$key}}" style="display: none;"></i>
-              <audio controls id="demo{{$key}}" src="http://127.0.0.1:8000/storage/audio_ep/{{$ep->name_audio}}" style="display: none;"></audio>
+              <audio class="percorrer_id" id="demo{{$key}}" src="http://127.0.0.1:8000/storage/audio_ep/{{$ep->name_audio}}" style="display: none;"></audio>
             </td>
             <td style="color: #eee;">{{$ep->name_ep}}</td>
             <td style="width: 200px"> 
-              <img src="{{ asset('sound.gif') }}" alt="gif som" class="gif_som" id="gif_som{{$key}}"/>
-              <i class='bx bx-trash-alt' id-ep="{{$ep->id}}" id-playlist="{{$id_playlist}}" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletar"></i>
+              <i class='bx bx-trash-alt' id="deletar{{$key}}" id-ep="{{$ep->id}}" id-playlist="{{$id_playlist}}" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletar"></i>
               {{$ep->temp_audio}}
+              <img src="{{ asset('sound.gif') }}" alt="gif som" class="gif_som" id="gif_som{{$key}}"/>
             </td>
           </tr>
         @endforeach 
@@ -204,6 +204,8 @@
     var audioTocando = document.getElementById('oggSource').src;
     var novoAudio = document.getElementById('demo'+id).src;
    
+    $('[id^=deletar]').css('opacity',1);
+    $('#deletar'+id).css('opacity',0);
    
     if(audioTocando != novoAudio){
       $('[id^=pause]').hide();
@@ -211,11 +213,12 @@
       $('[id^=gif_som]').css('opacity',0);
 
       $('#wrapper').empty();
-      $('#wrapper').append('<audio preload="auto" controls id="play-footer"> <source src="" id="oggSource"></audio>');
+      $('#wrapper').append('<audio preload="none" controls id="play-footer"> <source src="" id="oggSource"></audio>');
      
       var audio = document.getElementById('oggSource');
       audio.src = novoAudio;
 
+      $('#play-footer').trigger('load');
       $('#play-footer').audioPlayer();
     }
 

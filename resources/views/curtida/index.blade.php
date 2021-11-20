@@ -87,8 +87,7 @@
                 </th>
                 <td style="color: #eee;">{{$ep->name_ep}}</td>
                 <td> 
-                  <img src="{{ asset('sound.gif') }}" alt="gif som" class="gif_som" id="gif_som{{$key}}"/>
-                  <i class='bx bx-trash-alt' id-ep="{{$ep->id}}" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletar"></i>
+                  <i class='bx bx-trash-alt' id="deletar{{$key}}" id-ep="{{$ep->id}}" data-bs-toggle="tooltip" data-bs-placement="right" title="Deletar"></i>
                   <a class="nav-link dropdown logado" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class='bx bx-add-to-queue' data-bs-toggle="tooltip" data-bs-placement="right" title="Adicionar playlist"></i>       
                   </a>
@@ -101,6 +100,7 @@
                     @endforeach
                   </ul>
                    {{$ep->temp_audio}}
+                   <img src="{{ asset('sound.gif') }}" alt="gif som" class="gif_som" id="gif_som{{$key}}"/>
                 </td>
               </tr>
             @endforeach 
@@ -140,9 +140,11 @@
     
     var audioTocando = document.getElementById('oggSource').src;
     var novoAudio = document.getElementById('demo'+id).src;
+
+    $('[id^=deletar]').css('opacity',1);
+    $('#deletar'+id).css('opacity',0);
    
     if(audioTocando != novoAudio){
-      console.log('ola');
       $('[id^=pause]').hide();
       $('[id^=play]').show();
       $('[id^=gif_som]').css('opacity',0);
@@ -153,6 +155,7 @@
       var audio = document.getElementById('oggSource');
       audio.src = novoAudio;
 
+      $('#play-footer').trigger('load');
       $('#play-footer').audioPlayer();
     }
     

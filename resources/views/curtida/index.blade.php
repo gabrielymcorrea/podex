@@ -1,5 +1,7 @@
 @section('title', 'Curtida')
-@include('sidebar')
+@extends('app')
+
+@section('content')
 
 <style>
   .nav-link{
@@ -244,3 +246,5 @@
   });
 
 </script>
+
+@endsection

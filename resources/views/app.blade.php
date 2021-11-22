@@ -25,7 +25,8 @@
     <script src="{{ asset('js/audioplayer.js') }}"></script>
 
 </head>
-<body>
+<body id="body-pd">
+    @include('sidebar')
     @yield('content')
 </body>
 </html>

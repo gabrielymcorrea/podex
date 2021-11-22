@@ -1,6 +1,6 @@
 @section('title', 'Perfil')
-@include('sidebar')
-
+@extends('app')
+@section('content')
 
 <style>
     .form-perfil {
@@ -94,6 +94,7 @@
     </div>
 
 </div>
+
 <script>
     $(document).ready(function(){			
         setTimeout(function() {
@@ -103,3 +104,5 @@
         }, 5000);			
     });
 </script>
+
+@endsection

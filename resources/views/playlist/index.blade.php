@@ -1,5 +1,7 @@
 @section('title', 'Playlist')
-@include('sidebar')
+@extends('app')
+
+@section('content')
 
 <style>
     td, th, tr {
@@ -86,3 +88,5 @@
   });
 
 </script>
+
+@endsection

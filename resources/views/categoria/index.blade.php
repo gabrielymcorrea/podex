@@ -1,5 +1,7 @@
 @section('title', 'Categoria')
-@include('sidebar')
+@extends('app')
+
+@section('content')
 
 <style>
     .card-categoria {
@@ -62,3 +64,5 @@
         @endforeach
     </div>
 </div>
+
+@endsection

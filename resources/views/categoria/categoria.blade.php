@@ -1,5 +1,7 @@
 @section('title', $categoria[0]->type)
-@include('sidebar')
+@extends('app')
+
+@section('content')
 
 <style>
     .card-categoria{
@@ -164,3 +166,4 @@
     });
 </script>
 
+@endsection

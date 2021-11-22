@@ -1,5 +1,7 @@
 @section('title', 'Perfil')
-@include('sidebar')
+@extends('app')
+
+@section('content')
 
 
 <style>
@@ -227,3 +229,5 @@
         }, 5000);			
     });
 </script>
+
+@endsection

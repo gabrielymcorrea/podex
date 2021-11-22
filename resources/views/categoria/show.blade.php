@@ -1,5 +1,7 @@
 @section('title', $data[0]->name_podcast)
-@include('sidebar')
+@extends('app')
+
+@section('content')
 
 <style>
     .podcast_por {
@@ -525,3 +527,5 @@
       });
     });
 </script>
+
+@endsection
